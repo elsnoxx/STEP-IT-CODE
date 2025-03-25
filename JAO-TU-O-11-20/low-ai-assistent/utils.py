@@ -71,7 +71,7 @@ def zpracuj_prikaz(volba):
         "22": prikazy.generuj_nahodne_cislo,
         "23": prikazy.hraj_hadej_cislo,
         "24": read_from_file,
-        "25": sys.exit(0)
+        "25": sys.exit
     }
 
     if volba in command:
@@ -81,19 +81,31 @@ def zpracuj_prikaz(volba):
     
 
 
-def log_to_file(message):
+def log_to_file(message):   
     """
     Funkce pro zápis zprávy do souboru log.txt.
     Přidá časovou značku k zprávě a zapíše ji do souboru.
     Formátování data a času na formát 'YYYY-MM-DD HH:MM:SS'
     """
-    now = datetime.now()
-    date = now.strftime('%Y-%m-%d %H:%M:%S')
-    with open('log.txt', 'a', encoding='utf-8') as f:
-        f.write(f"{date}: {message}" + '\n')
-        f.close()
-
+    try:
+        now = datetime.now()
+        formatted_now = now.strftime('%Y-%m-%d %H:%M:%S')
+        with open('log.txt', 'a+', encoding='utf-8') as f:
+            f.write(f"{formatted_now}: {message}" + '\n')
+            f.close()
+    except FileNotFoundError:
+        print('Soubor neexistuje.')
+    
 def read_from_file():
     """
     Funkce pro čtení obsahu souboru 'log.txt' a jeho výpis do konzole.
     """
+    try:
+        with open('log.txt', 'r', encoding='utf-8') as f:
+            content = f.read()
+            f.close()
+
+        for line in content.split('\n'):
+            print(line)
+    except FileNotFoundError:
+        print('Soubor neexistuje.')
