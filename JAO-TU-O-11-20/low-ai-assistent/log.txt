@@ -7,3 +7,9 @@
 2025-03-25 18:49:27: Uživatel zadal příkaz: 1
 2025-03-25 18:49:29: Uživatel zadal příkaz: 15
 2025-03-25 18:49:31: Uživatel zadal příkaz: 25
+2025-03-25 19:01:54: Uživatel zadal příkaz: 24
+2025-03-25 19:09:49: Uživatel zadal příkaz: & C:/Users/ficek/AppData/Local/Programs/Python/Python313/python.exe c:/Users/ficek/OneDrive/Dokumenty/GitHub/STEP-IT-CODE/JAO-TU-O-11-20/low-ai-assistent/main.py
+2025-03-25 19:09:54: Uživatel zadal příkaz: 1
+2025-03-25 19:10:02: Uživatel zadal příkaz: 1
+2025-03-25 19:10:07: Uživatel zadal příkaz: 1
+2025-03-25 19:10:12: Uživatel zadal příkaz: 1

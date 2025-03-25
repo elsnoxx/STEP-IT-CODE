@@ -9,6 +9,18 @@ def sudost_lichost():
     Funkce také ošetřuje neplatné vstupy, tedy pokud uživatel nezadá celé číslo.
 
     """
+    while True:
+        try:
+            cislo = int(input("Zadej cislo: "))
+            if cislo == 0:
+                print(Fore.GREEN + f"{cislo} neni ani sude ani liche")
+            elif cislo % 2 == 0:
+                print(Fore.GREEN + f"Cislo {cislo} je sude")
+            else:
+                print(Fore.GREEN + f"Cislo {cislo} je liche")
+            break
+        except ValueError:
+            print("Zadej cislo.")
 
 
 def nasobek_sedmi():
