@@ -1,6 +1,7 @@
 import os
 import prikazy
 import sys
+from datetime import datetime
 from colorama import init
 
 init(autoreset=True)
@@ -72,7 +73,13 @@ def zpracuj_prikaz(volba):
         "24": read_from_file,
         "25": sys.exit(0)
     }
+
+    if volba in command:
+        command[volba]()
+    else:
+        print(Fore.RED + "Neplatna volba")
     
+
 
 def log_to_file(message):
     """
@@ -80,6 +87,11 @@ def log_to_file(message):
     Přidá časovou značku k zprávě a zapíše ji do souboru.
     Formátování data a času na formát 'YYYY-MM-DD HH:MM:SS'
     """
+    now = datetime.now()
+    date = now.strftime('%Y-%m-%d %H:%M:%S')
+    with open('log.txt', 'a', encoding='utf-8') as f:
+        f.write(f"{date}: {message}" + '\n')
+        f.close()
 
 def read_from_file():
     """
