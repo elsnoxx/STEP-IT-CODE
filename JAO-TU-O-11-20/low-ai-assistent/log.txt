@@ -13,3 +13,13 @@
 2025-03-25 19:10:02: Uživatel zadal příkaz: 1
 2025-03-25 19:10:07: Uživatel zadal příkaz: 1
 2025-03-25 19:10:12: Uživatel zadal příkaz: 1
+2025-03-25 19:26:37: Uživatel zadal příkaz: 15
+2025-03-25 19:35:38: Uživatel zadal příkaz: & C:/Users/ficek/AppData/Local/Programs/Python/Python313/python.exe c:/Users/ficek/OneDrive/Dokumenty/GitHub/STEP-IT-CODE/JAO-TU-O-11-20/low-ai-assistent/main.py
+2025-03-25 19:35:45: Uživatel zadal příkaz: 17
+2025-03-25 19:36:16: Uživatel zadal příkaz: 17
+2025-03-25 19:37:21: Uživatel zadal příkaz: 17
+2025-03-25 19:37:59: Uživatel zadal příkaz: & C:/Users/ficek/AppData/Local/Programs/Python/Python313/python.exe c:/Users/ficek/OneDrive/Dokumenty/GitHub/STEP-IT-CODE/JAO-TU-O-11-20/low-ai-assistent/main.py
+2025-03-25 19:38:03: Uživatel zadal příkaz: 17
+2025-03-25 19:38:35: Uživatel zadal příkaz: & C:/Users/ficek/AppData/Local/Programs/Python/Python313/python.exe c:/Users/ficek/OneDrive/Dokumenty/GitHub/STEP-IT-CODE/JAO-TU-O-11-20/low-ai-assistent/main.py
+2025-03-25 19:38:38: Uživatel zadal příkaz: 17
+2025-03-25 19:39:31: Uživatel zadal příkaz: 17

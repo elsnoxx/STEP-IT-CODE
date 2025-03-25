@@ -71,6 +71,7 @@ def zpracuj_prikaz(volba):
         "22": prikazy.generuj_nahodne_cislo,
         "23": prikazy.hraj_hadej_cislo,
         "24": read_from_file,
+        "26": prikazy.tabulka_nasobeni,
         "25": sys.exit
     }
 
