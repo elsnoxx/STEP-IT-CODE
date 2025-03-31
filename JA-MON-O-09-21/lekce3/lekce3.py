@@ -245,30 +245,30 @@ vety = [
     "Refaktoring kódu zlepšuje jeho čitelnost a efektivitu"
 ]
 
-veta = random.choice(vety)
-slova = veta.lower().replace(",", "").replace(".", "").split()
-# print(veta)
-# print(slova)
+# veta = random.choice(vety)
+# slova = veta.lower().replace(",", "").replace(".", "").split()
+# # print(veta)
+# # print(slova)
 
-print(f"Veta zni: {veta}")
-time.sleep(2)
-clear_console()
+# print(f"Veta zni: {veta}")
+# time.sleep(2)
+# clear_console()
 
 
-while True:
-    try:
-        tip = int(input("Zadej pocet unikatnich slov: "))
-        unikatni = set(slova)
-        if tip == len(unikatni):
-            print("Uhadl jsi")
-            break
-        elif tip > len(unikatni):
-            print("Zkus to znova s mensim cislem")
-        else:
-            print("Zkus to znova ale zadej vetsi cislo")
+# while True:
+#     try:
+#         tip = int(input("Zadej pocet unikatnich slov: "))
+#         unikatni = set(slova)
+#         if tip == len(unikatni):
+#             print("Uhadl jsi")
+#             break
+#         elif tip > len(unikatni):
+#             print("Zkus to znova s mensim cislem")
+#         else:
+#             print("Zkus to znova ale zadej vetsi cislo")
         
-    except ValueError:
-        print("Prosim zadej cislo")
+#     except ValueError:
+#         print("Prosim zadej cislo")
         
 
 
@@ -278,8 +278,8 @@ while True:
 
 # Úkol 1
 # Vytvoř slovník, kde klíčem bude jméno a hodnotou věk. Jak získáš věk osoby jménem "Petr"?
-
-
+people = {"Anna" : 18, "Bob" : 50, "Petr" : 45}
+print(people.get("Petr"))
 
 # Úkol 2
 # Vytvoř set obsahující názvy zvířat. Přidej do tohoto setu nové zvíře "kočka".
@@ -288,32 +288,43 @@ while True:
 
 # Úkol 3: Práce s hodnotami v dictionary
 # Máš slovník {"jablko": 10, "banán": 5, "pomeranč": 8}. Jak zvýšíš počet jablek o 3?
-
+fruits = {"jablko": 10, "banán": 5, "pomeranč": 8}
+print(fruits)
+fruits["jablko"] += 3
+print(fruits)
 
 
 # Úkol 4: Iterace přes dictionary
 # Máš slovník {"Anna": 22, "Petr": 30, "Eva": 19}. Jak vypíšeš všechny klíče a hodnoty?
 people_ages = {"Anna": 22, "Petr": 30, "Eva": 19}
 
+for name, age in people_ages.items():
+    print(f"{name} ma {age} let")
 
 
 
 # Úkol 5: Získání hodnoty z dictionary s výchozí hodnotou
 # Máš slovník {"auto": "BMW", "barva": "červená"}. Jak získáš hodnotu pro klíč "model", pokud neexistuje?
+# car = {"auto": "BMW", "barva": "červená", "model": "M3"}
 car = {"auto": "BMW", "barva": "červená"}
-
+model = car.get("model", "neznami")
+print(model)
 
 
 
 # Úkol 6: Zanořené dictionaries
 # Vytvoř slovník, kde klíčem bude jméno a hodnotou další slovník obsahující věk a město.
 # Jak získáš město osoby jménem "Eva"?
+nested_dict = {
+    "Anna": {"věk": 22, "město": "Praha"},
+    "Petr": {"věk": 30, "město": "Brno"},
+    "Eva": {"věk": 19, "město": "Ostrava"}
+}
 
-
-
+print(nested_dict["Eva"]["město"])
 
 # Hra: Duolingo
-#  Program vypíše náhodné české slovo a hráč musí napsat jeho anglický překlad.
+# Program vypíše náhodné české slovo a hráč musí napsat jeho anglický překlad.
 # Pokud hráč odpoví správně, získá bod. Pokud ne, program mu ukáže správný překlad.
 # Hráč může kdykoliv napsat "konec" a hra se ukončí.
 
@@ -370,6 +381,25 @@ prekladac = {
     "země": "earth",
     "vzduch": "air"
 }
+
+
+print("Napis anglicky preklad vypsaneho slova.")
+print("Pokud chces skoncit napis X")
+print(prekladac.keys())
+print(list(prekladac.keys()))
+
+while True:
+    ceske_slovo = random.choice(list(prekladac.keys()))
+    odpoved = input(f"Jak se prelozi slovo {ceske_slovo} do anglictiny: ")
+
+    if odpoved == "X":
+        break
+
+    if odpoved == prekladac[ceske_slovo]:
+        print("SPravna odpoved")
+    else:
+        print(f"Spatne spravna odpoved je {prekladac[ceske_slovo]}")
+    
 
 
 # ------------------------------------------------------------------------------ 
