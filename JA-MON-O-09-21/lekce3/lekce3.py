@@ -119,23 +119,23 @@ staty_a_mesta = (
 )
 
 
-# print("Vitejte ve hre kde vam pocitac zada stat a vy vypisete jeho hlavni mesto.")
+print("Vitejte ve hre kde vam pocitac zada stat a vy vypisete jeho hlavni mesto.")
 
-# pocet_kol = 5
-# body = 0
+pocet_kol = 5
+body = 0
 
-# for kolo in range(pocet_kol):
-#     stat, hlavni_mesto = random.choice(staty_a_mesta)
-#     # print(f"Bot vybral {stat} a jeho hlavni mesto je {hlavni_mesto}")
-#     gues = input(f"Jake je hlavni mesto {stat}: ")
+for kolo in range(pocet_kol):
+    stat, hlavni_mesto = random.choice(staty_a_mesta)
+    # print(f"Bot vybral {stat} a jeho hlavni mesto je {hlavni_mesto}")
+    gues = input(f"Jake je hlavni mesto {stat}: ")
 
-#     if gues.lower() == hlavni_mesto.lower():
-#         print("Spravne uhadl jsi to a ziskavas bod")
-#         body += 1
-#     else:
-#         print("spatne neziskavas nic")
+    if gues.lower() == hlavni_mesto.lower():
+        print("Spravne uhadl jsi to a ziskavas bod")
+        body += 1
+    else:
+        print("spatne neziskavas nic")
 
-# print(f"Konec hry uhadl jsi {body}/{pocet_kol}")
+print(f"Konec hry uhadl jsi {body}/{pocet_kol}")
 
 # ------------------------------------------------------------------------------
 # 2. Sets
@@ -245,30 +245,30 @@ vety = [
     "Refaktoring kódu zlepšuje jeho čitelnost a efektivitu"
 ]
 
-# veta = random.choice(vety)
-# slova = veta.lower().replace(",", "").replace(".", "").split()
-# # print(veta)
-# # print(slova)
+veta = random.choice(vety)
+slova = veta.lower().replace(",", "").replace(".", "").split()
+# print(veta)
+# print(slova)
 
-# print(f"Veta zni: {veta}")
-# time.sleep(2)
-# clear_console()
+print(f"Veta zni: {veta}")
+time.sleep(2)
+clear_console()
 
 
-# while True:
-#     try:
-#         tip = int(input("Zadej pocet unikatnich slov: "))
-#         unikatni = set(slova)
-#         if tip == len(unikatni):
-#             print("Uhadl jsi")
-#             break
-#         elif tip > len(unikatni):
-#             print("Zkus to znova s mensim cislem")
-#         else:
-#             print("Zkus to znova ale zadej vetsi cislo")
+while True:
+    try:
+        tip = int(input("Zadej pocet unikatnich slov: "))
+        unikatni = set(slova)
+        if tip == len(unikatni):
+            print("Uhadl jsi")
+            break
+        elif tip > len(unikatni):
+            print("Zkus to znova s mensim cislem")
+        else:
+            print("Zkus to znova ale zadej vetsi cislo")
         
-#     except ValueError:
-#         print("Prosim zadej cislo")
+    except ValueError:
+        print("Prosim zadej cislo")
         
 
 
@@ -408,11 +408,16 @@ while True:
 # Úkol 1: Základní hledání
 # V seznamu [3, 7, 2, 9, 4] najdi, zda obsahuje číslo 9. Jaký způsob použiješ?
 numbers_list = [3, 7, 2, 9, 4]
-
+if 9 in numbers_list:
+    print("Je")
+else:
+    print("neni")
 
 # Úkol 2: Najdi index čísla
 # Jak zjistíš index čísla 9 v seznamu?
 
+print(numbers_list.index(9))
+print(numbers_list[numbers_list.index(9)])
 
 
 # ------------------------------------------------------------------------------ 
@@ -420,11 +425,21 @@ numbers_list = [3, 7, 2, 9, 4]
 
 # Úkol 1: Seřaď seznam čísel vzestupně
 unsorted_numbers = [8, 3, 1, 5, 2]
-
+print(unsorted_numbers)
+unsorted_numbers.sort()
+print(unsorted_numbers)
 
 # Úkol 2: Seřaď seznam čísel sestupně
 unsorted_numbers = [8, 3, 1, 5, 2]
-
+print(unsorted_numbers)
+sorted_list = sorted(unsorted_numbers, reverse=True)
+print(sorted_list)
+# setrizeni vzestupne
+sorted_list = sorted(unsorted_numbers, reverse=True)
+print(sorted_list)
 
 # Úkol 3: Třídění seznamu řetězců podle délky
 words = ["Python", "je", "skvělý", "jazyk"]
+print(words)
+words.sort(key=len)
+print(words)
