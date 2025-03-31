@@ -5,29 +5,54 @@
 
 # Úkol 1
 # Vytvoř tuple, který obsahuje tři jména. Jak přistoupíš k druhému jménu?
+tuplne_name = ("Alice", "Bob", "Adam")
+print(tuplne_name[0])
+
 
 
 
 # Úkol 2
 # Vytvoř tuple obsahující názvy tří měst. Jak zjistíš, zda město "Praha" je v tomto tuple?
+cities = ("Brno", "Ostrava", "Jihlava")
+
+if "Praha" in cities:
+    print("Je")
+else:
+    print("neni")
+
 
 
 # Úkol 3: Rozbalení tuple
 # Máš tuple obsahující tři hodnoty: ("Alice", 25, "Praha"). Jak rozbalíš tento tuple do tří proměnných?
 person = ("Alice", 25, "Praha")
 
+name = person[0]
+age = person[1]
+town = person[2]
+
+print(f"{name} ma {age} let a bydli v {town}")
+
+# ("Alice", 25 , "Praha")
+# ( name  , age, town   )
+name, age, town = person
+print(f"{name} ma {age} let a bydli v {town}")
+
 
 # Úkol 4: Výměna hodnot pomocí tuple
 # Máš dvě proměnné a = 5 a b = 10. Jak prohodíš jejich hodnoty bez použití třetí proměnné?
 a = 5
 b = 10
+print(f"Start: a = {a}, b = {b}")
+tmp = a
+a = b
+b = tmp
+print(f"Swap: a = {a}, b = {b}")
 
 
 # Úkol 5: Iterace přes tuple
 # Máš tuple obsahující názvy měst: ("Brno", "Praha", "Ostrava"). Jak vypíšeš každé město na nový řádek?
 cities = ("Brno", "Praha", "Ostrava")
-for city in cities:
-    print(city)
+
 
 # Úkol 6: Zanořené tuple
 # Máš tuple obsahující informace o osobách: (("Alice", 25), ("Bob", 30), ("Charlie", 22)).
