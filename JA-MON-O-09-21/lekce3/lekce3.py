@@ -119,46 +119,65 @@ staty_a_mesta = (
 )
 
 
+# print("Vitejte ve hre kde vam pocitac zada stat a vy vypisete jeho hlavni mesto.")
 
-print("Vitejte ve hre kde vam pocitac zada stat a vy vypisete jeho hlavni mesto.")
+# pocet_kol = 5
+# body = 0
 
-pocet_kol = 5
-body = 0
+# for kolo in range(pocet_kol):
+#     stat, hlavni_mesto = random.choice(staty_a_mesta)
+#     # print(f"Bot vybral {stat} a jeho hlavni mesto je {hlavni_mesto}")
+#     gues = input(f"Jake je hlavni mesto {stat}: ")
 
-for kolo in range(pocet_kol):
-    stat, hlavni_mesto = random.choice(staty_a_mesta)
-    print(f"Bot vybral {stat} a jeho hlavni mesto je {hlavni_mesto}")
+#     if gues.lower() == hlavni_mesto.lower():
+#         print("Spravne uhadl jsi to a ziskavas bod")
+#         body += 1
+#     else:
+#         print("spatne neziskavas nic")
 
+# print(f"Konec hry uhadl jsi {body}/{pocet_kol}")
 
 # ------------------------------------------------------------------------------
 # 2. Sets
 
 # Úkol 1
 # Vytvoř set s několika čísly. Jak ověříš, zda číslo 5 je v tomto setu?
+number_sets = {1, 2, 3, 4, 5, 6}
+if 9 in number_sets:
+    print("JE")
+else:
+    print("neni")
 
 
 
 # Úkol 2
 # Vytvoř set obsahující názvy zvířat. Přidej do tohoto setu nové zvíře "kočka".
-
-
+animal_set = {"pes", "slon", "had"}
+print(animal_set)
+animal_set.add("kocka")
+print(animal_set)
 
 # Úkol 3: Operace na setech
 # Máš dva sety: {1, 2, 3, 4} a {3, 4, 5, 6}. Jak zjistíš jejich průnik (společné prvky)?
 set1 = {1, 2, 3, 4}
 set2 = {3, 4, 5, 6}
+print(set1 & set2)
 
 
 
 # Úkol 4: Odstranění prvku ze setu
 # Máš set {1, 2, 3, 4, 5}. Jak odstraníš číslo 3?
 numbers = {1, 2, 3, 4, 5}
-
-
+print(numbers)
+numbers.remove(3)
+print(numbers)
 
 # Úkol 5: Převod seznamu na set
 # Máš seznam [1, 2, 2, 3, 4, 4, 5]. Jak vytvoříš set, který obsahuje pouze unikátní hodnoty?
-numbers_list = [1, 2, 2, 3, 4, 4, 5]
+numbers_list = [6, 6, 1, 2, 2, 3, 4, 4, 5]
+print(numbers_list)
+new_set = set(numbers_list)
+print(new_set)
 
 
 
@@ -166,19 +185,33 @@ numbers_list = [1, 2, 2, 3, 4, 4, 5]
 # Máš dva sety: {1, 2, 3} a {4, 5, 6}. Jak vytvoříš nový set, který obsahuje všechny prvky z obou setů?
 set_a = {1, 2, 3}
 set_b = {4, 5, 6}
+print(set_a | set_b)
 
+# & -> and, prunik
+# if 1 == 1 and 2 == 2 -> pravda
+# if 1 == 1 and 3 == 2 -> nepravda
 
+# | -> or, spojeni
+# if 1 == 1 or 2 == 3 -> pravda
+# if 1 == 2 or 2 == 2 -> pravda
+# if 1 == 2 or 3 == 2 -> nepravda
 
 # Úkol 7: Generování setu z řetězce
 # Máš řetězec "abrakadabra". Jak vytvoříš set obsahující unikátní znaky z tohoto řetězce?
 string = "abrakadabra"
-
+print(string)
+new_char_set = set(string)
+print(new_char_set)
 
 
 # Úkol 8: Set z číselného rozsahu
 # Jak vytvoříš set obsahující všechna sudá čísla od 1 do 10?
-
-
+even_number = {}
+even_number = set(even_number)
+for i in range(1,11):
+    if i % 2 == 0:
+        even_number.add(i)
+print(even_number)
 
 # Hra: Najdi unikátní slova!
 # Najdi unikátní slova ve větě a zjisti, kolik jich je.
@@ -187,7 +220,12 @@ string = "abrakadabra"
 # Hra je založena na náhodně vybrané větě z předem definovaného seznamu vět.
 # Hráč zadá svůj tip a program porovná s počtem unikátních slov ve větě.
 # Pokud uhodne správně, získá bod. Pokud ne, ukáže se správný počet unikátních slov.
+import random
+import time
+import os
 
+def clear_console():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 vety = [
     "Python je skvělý a mocný programovací jazyk",
@@ -200,13 +238,38 @@ vety = [
     "Nejlepší způsob jak se naučit programovat je psát kód",
     "Python je interpretovaný jazyk s jednoduchou syntaxí",
     "Algoritmy a datové struktury jsou klíčem k efektivnímu kódu",
-    "Verzování kódu pomocí GitHubu je užitečné pro spolupráci",
+    "Verzování a kódu pomocí GitHubu je užitečné a pro spolupráci",
     "Každý programátor by měl znát alespoň jeden objektově orientovaný jazyk",
     "Čtení cizího kódu je stejně důležité jako jeho psaní",
     "Komentování kódu pomáhá ostatním i tobě v budoucnu",
     "Refaktoring kódu zlepšuje jeho čitelnost a efektivitu"
 ]
 
+veta = random.choice(vety)
+slova = veta.lower().replace(",", "").replace(".", "").split()
+# print(veta)
+# print(slova)
+
+print(f"Veta zni: {veta}")
+time.sleep(2)
+clear_console()
+
+
+while True:
+    try:
+        tip = int(input("Zadej pocet unikatnich slov: "))
+        unikatni = set(slova)
+        if tip == len(unikatni):
+            print("Uhadl jsi")
+            break
+        elif tip > len(unikatni):
+            print("Zkus to znova s mensim cislem")
+        else:
+            print("Zkus to znova ale zadej vetsi cislo")
+        
+    except ValueError:
+        print("Prosim zadej cislo")
+        
 
 
 
