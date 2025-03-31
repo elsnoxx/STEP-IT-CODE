@@ -1,5 +1,5 @@
 # Pracovní list: Tuples, Sets, Dictionaries, Search a Sort
-
+import random
 # ------------------------------------------------------------------------------
 # 1. Tuples
 
@@ -43,21 +43,28 @@ print(f"{name} ma {age} let a bydli v {town}")
 a = 5
 b = 10
 print(f"Start: a = {a}, b = {b}")
-tmp = a
-a = b
-b = tmp
+# tmp = a
+# a = b
+# b = tmp
+a, b = b, a
 print(f"Swap: a = {a}, b = {b}")
 
 
 # Úkol 5: Iterace přes tuple
 # Máš tuple obsahující názvy měst: ("Brno", "Praha", "Ostrava"). Jak vypíšeš každé město na nový řádek?
 cities = ("Brno", "Praha", "Ostrava")
-
+for city in cities:
+    print(city)
 
 # Úkol 6: Zanořené tuple
 # Máš tuple obsahující informace o osobách: (("Alice", 25), ("Bob", 30), ("Charlie", 22)).
 # Jak získáš věk osoby jménem "Bob"?
 people = (("Alice", 25), ("Bob", 30), ("Charlie", 22))
+
+# print(people[1][1])
+for person in people:
+    if person[0] == "Bob":
+        print(person[1])
 
 # Hra: Uhádni hlavní město.
 # Hráč hádá hlavní město podle zadaného státu. Pokud uhodne správně, vyhraje.
@@ -112,6 +119,15 @@ staty_a_mesta = (
 )
 
 
+
+print("Vitejte ve hre kde vam pocitac zada stat a vy vypisete jeho hlavni mesto.")
+
+pocet_kol = 5
+body = 0
+
+for kolo in range(pocet_kol):
+    stat, hlavni_mesto = random.choice(staty_a_mesta)
+    print(f"Bot vybral {stat} a jeho hlavni mesto je {hlavni_mesto}")
 
 
 # ------------------------------------------------------------------------------
