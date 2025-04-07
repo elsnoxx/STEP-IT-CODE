@@ -9,7 +9,7 @@ class Pes:
     def info(self):
         print(f"Pes se jmenuje {self.name}, ma barvu {self.color} a ma {self.age} let")
 
-    def brithday(self):
+    def birthday(self):
         self.age += 1
         print(f"Pes {self.name} ma dneska {self.age} let")
 
@@ -23,7 +23,7 @@ pesMax = Pes("Max", "Black")
 pesRex.info()
 pesMax.info()
 
-pesMax.brithday()
+pesMax.birthday()
 pesRex.info()
 pesMax.info()
 
@@ -33,15 +33,28 @@ seznam.append(Pes("Rex", "Brown"))
 seznam.append(Pes("Max", "Black"))
 print(seznam)
 for dog in seznam:
-    dog.brithday()
+    dog.birthday()
     dog.info()
 
 # Úkol 2: Třída Osoba se zapouzdřením
 # Vytvoř třídu Osoba, která má atributy jméno a věk. Věk nastav jako soukromý atribut.
 # Přidej metody pro změnu věku (zmen_vek) a získání věku (get_vek).
 
-
-
+class Osoba:
+    def __init__(self, jmeno, vek):
+        self.jmeno = jmeno
+        self.__vek = vek
+    
+    def zmen_vek(self, novy_vek):
+        self.__vek = novy_vek
+    
+    def info(self):
+        print(f"Osoba se jmenem {self.jmeno} ma {self.__vek} let")
+    
+person = Osoba("Adam", 18)
+person.info()
+person.zmen_vek(26)
+person.info()
 
 
 # Úkol 3: Třída Auto
