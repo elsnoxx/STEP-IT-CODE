@@ -1,10 +1,40 @@
 # Úkol 1: Třída Pes
 # Vytvoř třídu Pes, která má atributy jméno a barva. Přidej metodu info, která vypíše informace o psovi.
+class Pes:
+    def __init__(self, name, color):
+        self.name = name
+        self.color = color
+        self.age = 0
 
-   
-# test
+    def info(self):
+        print(f"Pes se jmenuje {self.name}, ma barvu {self.color} a ma {self.age} let")
 
+    def brithday(self):
+        self.age += 1
+        print(f"Pes {self.name} ma dneska {self.age} let")
 
+# pesRex = Pes("Rex", "Brown")
+# print(pesRex.name)
+# pesMax = Pes("Max", "Black")
+# print(pesMax.name)
+
+pesRex = Pes("Rex", "Brown")
+pesMax = Pes("Max", "Black")
+pesRex.info()
+pesMax.info()
+
+pesMax.brithday()
+pesRex.info()
+pesMax.info()
+
+# seznam = [Pes("Rex", "Brown"), Pes("Max", "Black")]
+seznam = []
+seznam.append(Pes("Rex", "Brown"))
+seznam.append(Pes("Max", "Black"))
+print(seznam)
+for dog in seznam:
+    dog.brithday()
+    dog.info()
 
 # Úkol 2: Třída Osoba se zapouzdřením
 # Vytvoř třídu Osoba, která má atributy jméno a věk. Věk nastav jako soukromý atribut.
