@@ -11,11 +11,18 @@ def get_pokemon_info(pokemon_name):
     
     # TODO: Odešli GET požadavek na API https://pokeapi.co/api/v2/pokemon/{pokemon_name}
     # Tip: Použij requests.get() a ulož výsledek do proměnné response
+    url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_name}"
+    # print(url)
+    response = requests.get(url)
     
     # TODO: Zkontroluj, zda byl požadavek úspěšný (status_code 200)
     # Pokud ne, vrať zprávu "Pokémon nenalezen"
+    if response.status_code != 200:
+        return {"error" : "Pokémon nenalezen"}
     
     # TODO: Získej data ve formátu JSON
+    data = response.json()
+    # print(data)
     
     # TODO: Z odpovědi extrahuj následující informace:
     # - jméno (data["name"])
@@ -24,8 +31,31 @@ def get_pokemon_info(pokemon_name):
     # - obrázek (data["sprites"]["front_default"])
     # - typy (data["types"] - projdi seznam a získej ["type"]["name"])
     # - schopnosti (data["abilities"] - projdi seznam a získej ["ability"]["name"])
+    info = {
+        "name" : data["name"],
+        "height" : data["height"],
+        "weight" : data["weight"],
+        "image" : data["sprites"]["front_default"]
+    }
+
+    abilities = data["abilities"]
+    abilities_list = []
+    for abilitie in abilities:
+        abilities_list.append(abilitie["ability"]["name"])
     
+    info["abilities"] = abilities_list
+
+    abilities = data["types"]
+    types_list = []
+    for abilitie in abilities:
+        types_list.append(abilitie["type"]["name"])
+    
+    info["types"] = types_list
+    print(info)
+
     # TODO: Vrať slovník s extrahovanými informacemi
+    return info
+    
 
 def display_pokemon(pokemon_data):
     """
@@ -43,6 +73,12 @@ def display_pokemon(pokemon_data):
     # Obrázek: https://raw.githubusercontent.com/...
     
     # Doplň svůj kód
+    print("=" * 22)
+    print(pokemon_data["name"])
+    print("=" * 22)
+    print(f"Výška: {pokemon_data["height"]} dm")
+    print(f"Váha: {pokemon_data["weight"]} hg")
+    print(f"Obrázek: {pokemon_data["image"]}")
 
 def pokemon_quiz():
     """
@@ -87,9 +123,21 @@ def main():
             name = input("Zadej jméno Pokémona: ")
             pokemon_data = get_pokemon_info(name)
             if "error" in pokemon_data:
+                # {"error": "Pokemon nenalezen"}
                 print(pokemon_data["error"])
             else:
                 display_pokemon(pokemon_data)
+        if choice == "2":
+            random_pokemon = random.choice(pokemon_list)
+            pokemon_data = get_pokemon_info(random_pokemon)
+            display_pokemon(pokemon_data)
+        if choice == "3":
+            pokemon_quiz()
+        if choice == "4":
+            print("Program se ukoncuje")
+            break
+        if choice not in ["1", "2", "3", "4"]:
+            print("neplatna volba zkus to znova")
 
 # Spuštění hlavního programu
 if __name__ == "__main__":
