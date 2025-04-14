@@ -1,0 +1,143 @@
+{
+    "ico": "61989100",
+    "obchodniJmeno": "Vysok\u00e1 \u0161kola b\u00e1\u0148sk\u00e1 - Technick\u00e1 univerzita Ostrava",
+    "sidlo": {
+        "kodStatu": "CZ",
+        "nazevStatu": "\u010cesk\u00e1 republika",
+        "kodKraje": 132,
+        "nazevKraje": "Moravskoslezsk\u00fd kraj",
+        "kodOkresu": 3807,
+        "nazevOkresu": "Ostrava-m\u011bsto",
+        "kodObce": 554821,
+        "nazevObce": "Ostrava",
+        "kodMestskeCastiObvodu": 546224,
+        "kodUlice": 367443,
+        "nazevMestskeCastiObvodu": "Poruba",
+        "nazevUlice": "17. listopadu",
+        "cisloDomovni": 2172,
+        "kodCastiObce": 414085,
+        "cisloOrientacni": 15,
+        "nazevCastiObce": "Poruba",
+        "kodAdresnihoMista": 3304922,
+        "psc": 70800,
+        "textovaAdresa": "17. listopadu 2172/15, Poruba, 70800 Ostrava",
+        "standardizaceAdresy": true,
+        "typCisloDomovni": 1
+    },
+    "pravniForma": "601",
+    "financniUrad": "390",
+    "datumVzniku": "1995-01-01",
+    "datumAktualizace": "2025-03-04",
+    "dic": "CZ61989100",
+    "icoId": "61989100",
+    "adresaDorucovaci": {
+        "radekAdresy1": "17. listopadu 2172/15",
+        "radekAdresy2": "Poruba",
+        "radekAdresy3": "70800 Ostrava"
+    },
+    "seznamRegistraci": {
+        "stavZdrojeVr": "NEEXISTUJICI",
+        "stavZdrojeRes": "AKTIVNI",
+        "stavZdrojeRzp": "AKTIVNI",
+        "stavZdrojeNrpzs": "NEEXISTUJICI",
+        "stavZdrojeRpsh": "NEEXISTUJICI",
+        "stavZdrojeRcns": "NEEXISTUJICI",
+        "stavZdrojeSzr": "NEEXISTUJICI",
+        "stavZdrojeDph": "AKTIVNI",
+        "stavZdrojeSd": "NEEXISTUJICI",
+        "stavZdrojeIr": "NEEXISTUJICI",
+        "stavZdrojeCeu": "NEEXISTUJICI",
+        "stavZdrojeRs": "NEEXISTUJICI",
+        "stavZdrojeRed": "AKTIVNI",
+        "stavZdrojeMonitor": "NEEXISTUJICI"
+    },
+    "primarniZdroj": "res",
+    "dalsiUdaje": [
+        {
+            "obchodniJmeno": [
+                {
+                    "obchodniJmeno": "Vysok\u00e1 \u0161kola b\u00e1\u0148sk\u00e1 - Technick\u00e1 univerzita Ostrava",
+                    "primarniZaznam": true
+                }
+            ],
+            "sidlo": [
+                {
+                    "sidlo": {
+                        "kodStatu": "CZ",
+                        "nazevStatu": "\u010cesk\u00e1 republika",
+                        "kodKraje": 132,
+                        "nazevKraje": "Moravskoslezsk\u00fd kraj",
+                        "kodOkresu": 3807,
+                        "nazevOkresu": "Ostrava-m\u011bsto",
+                        "kodObce": 554821,
+                        "nazevObce": "Ostrava",
+                        "kodMestskeCastiObvodu": 546224,
+                        "kodUlice": 367443,
+                        "nazevMestskeCastiObvodu": "Poruba",
+                        "nazevUlice": "17. listopadu",
+                        "cisloDomovni": 2172,
+                        "kodCastiObce": 414085,
+                        "cisloOrientacni": 15,
+                        "nazevCastiObce": "Poruba",
+                        "kodAdresnihoMista": 3304922,
+                        "psc": 70800,
+                        "textovaAdresa": "17. listopadu 2172/15, Poruba, 70800 Ostrava",
+                        "standardizaceAdresy": true,
+                        "typCisloDomovni": 1
+                    },
+                    "primarniZaznam": true
+                }
+            ],
+            "pravniForma": "601",
+            "datovyZdroj": "res"
+        },
+        {
+            "obchodniJmeno": [
+                {
+                    "obchodniJmeno": "Vysok\u00e1 \u0161kola b\u00e1\u0148sk\u00e1 - Technick\u00e1 univerzita Ostrava",
+                    "primarniZaznam": true
+                }
+            ],
+            "sidlo": [
+                {
+                    "sidlo": {
+                        "kodStatu": "CZ",
+                        "nazevStatu": "\u010cesk\u00e1 republika",
+                        "kodKraje": 132,
+                        "nazevKraje": "Moravskoslezsk\u00fd kraj",
+                        "kodOkresu": 3807,
+                        "nazevOkresu": "Ostrava-m\u011bsto",
+                        "kodObce": 554821,
+                        "nazevObce": "Ostrava",
+                        "kodMestskeCastiObvodu": 546224,
+                        "kodUlice": 367443,
+                        "nazevMestskeCastiObvodu": "Poruba",
+                        "nazevUlice": "17. listopadu",
+                        "cisloDomovni": 2172,
+                        "kodCastiObce": 414085,
+                        "cisloOrientacni": 15,
+                        "nazevCastiObce": "Poruba",
+                        "kodAdresnihoMista": 3304922,
+                        "psc": 70800,
+                        "textovaAdresa": "17. listopadu 2172/15, Poruba, 70800 Ostrava",
+                        "standardizaceAdresy": true,
+                        "typCisloDomovni": 1
+                    },
+                    "primarniZaznam": true
+                }
+            ],
+            "pravniForma": "601",
+            "datovyZdroj": "rzp"
+        }
+    ],
+    "czNace": [
+        "431",
+        "43130",
+        "4399",
+        "6820",
+        "72",
+        "773",
+        "85420"
+    ],
+    "subRegistrSzr": "szr"
+}
