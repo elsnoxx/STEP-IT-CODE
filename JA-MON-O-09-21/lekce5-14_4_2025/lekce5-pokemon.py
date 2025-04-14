@@ -31,6 +31,15 @@ def get_pokemon_info(pokemon_name):
     # - obrázek (data["sprites"]["front_default"])
     # - typy (data["types"] - projdi seznam a získej ["type"]["name"])
     # - schopnosti (data["abilities"] - projdi seznam a získej ["ability"]["name"])
+    # info = {
+    #     "name" : data["name"],
+    #     "height" : data["height"],
+    #     "weight" : data["weight"],
+    #     "image" : data["sprites"]["front_default"],
+    #     "types": [type_info["type"]["name"] for type_info in data["types"]],
+    #     "abilities": [ability_info["ability"]["name"] for ability_info in data["abilities"]]
+    # }
+
     info = {
         "name" : data["name"],
         "height" : data["height"],
@@ -51,7 +60,7 @@ def get_pokemon_info(pokemon_name):
         types_list.append(abilitie["type"]["name"])
     
     info["types"] = types_list
-    print(info)
+    # print(info)
 
     # TODO: Vrať slovník s extrahovanými informacemi
     return info
@@ -78,6 +87,8 @@ def display_pokemon(pokemon_data):
     print("=" * 22)
     print(f"Výška: {pokemon_data["height"]} dm")
     print(f"Váha: {pokemon_data["weight"]} hg")
+    print(f"Typy: {', '.join(pokemon_data["types"])}")
+    print(f"Schopnosti: {', '.join(pokemon_data["abilities"])}")
     print(f"Obrázek: {pokemon_data["image"]}")
 
 def pokemon_quiz():
@@ -89,13 +100,38 @@ def pokemon_quiz():
                        "jigglypuff", "mewtwo", "snorlax", "gengar", "gyarados"]
     
     # TODO: Vyber náhodného Pokémona ze seznamu
-    
+    random_pokemon = random.choice(popular_pokemon)
+
     # TODO: Získej data o tomto Pokémonovi
+    info = get_pokemon_info(random_pokemon)
+    if "error" in info:
+        print("Nastala chyba")
+        return
     
     # TODO: Polož uživateli otázku o tomto Pokémonovi
     # Například: "Jaký typ má Pokémon PIKACHU?"
+    print(f"Jaký typ má Pokémon {info["name"]}")
+    
+
     
     # TODO: Zkontroluj odpověď a informuj uživatele, zda odpověděl správně
+    count = 0
+    guests = []
+    while True:
+        answer = input("Zadej typ pokemona: ")
+        if answer in info["types"]:
+            if answer not in guests:
+                print("Spravne uhadl jsi")
+                guests.append(answer)
+                count += 1
+            else:
+                print("jiz uhadnute")
+        else:
+            print("spatne")
+        
+        if count == len(info["types"]):
+            print("uhadl jsi vse")
+            break
 
 # Hlavní menu
 def main():
