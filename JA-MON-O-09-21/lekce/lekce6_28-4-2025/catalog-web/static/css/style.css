@@ -1,0 +1,21 @@
+body{
+    background-color: antiquewhite;
+}
+
+nav{
+    padding: 10px;
+    background-color: rgb(48, 48, 48);
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover{
+    color: aqua;
+}
+
+.nadpis{
+    color: red;
+}
