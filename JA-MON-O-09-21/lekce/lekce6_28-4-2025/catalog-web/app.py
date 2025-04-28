@@ -36,6 +36,17 @@ def gta5():
 def callofduty():
     return render_template("callofduty.html")
 
+@app.route("/pozdrav", methods=["GET", "POST"])
+def pozdrav():
+    if request.method == "POST":
+        return render_template("pozdrav.html", name=request.form["name"])
+    else:
+        return "get pozadavek"
+
+# Chybová stránka 404 - stránka nenalezena
+@app.errorhandler(404)
+def error(e):
+    return render_template("404.html", error=e)
 
 
 if __name__ == '__main__':
