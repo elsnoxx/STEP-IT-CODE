@@ -52,7 +52,7 @@ def login():
 @app.route('/hello/<name>')
 def hello(name):
     # Ukázka použití šablony s proměnnou (např. hello.html)
-    return render_template("hello.html", name=name)
+    return render_template("hello.html", name=name, title="TEST")
 
 # 5. Zpracování formulářů
 @app.route('/form', methods=['GET', 'POST'])
