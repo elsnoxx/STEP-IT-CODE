@@ -102,125 +102,204 @@ def page_not_exist(e):
 @app.route('/text')
 def text_response():
     # Vrácení čistého textu
-    pass
+    return "Toto je textová odpověď"
 
 @app.route('/html')
 def html_response():
     # Vrácení HTML kódu
-    pass
+    # nadpi a nejaky text, --> html tagy h2, p
+    return "<h2>HTML odpověď</h2><p>Toto je odstavec v HTML.</p>"
 
 @app.route('/json')
 def json_response():
     # Vrácení JSON odpovědi (např. slovník)
-    pass
+    # { "status" : "ok", "text" : "Ahoj svete", "kod" : 200}
+    return { "status" : "ok", "text" : "Ahoj svete", "kod" : 200}
 
 @app.route('/tuple')
 def tuple_response():
     # Vrácení odpovědi jako tuple (obsah, status kód, hlavičky)
-    pass
+    # tuple --> ("Hodnota", 202, { "text" : "Ahoj svete jak se mas"})
+    return ("Hodnota", 202, { "text" : "Ahoj svete jak se mas"})
 
 # 8. Vrácení souboru ke stažení
 @app.route('/download')
 def download_file():
     # Vrácení souboru ke stažení (např. textový soubor)
-    pass
+    # Vytvoří soubor v paměti a nabídne ke stažení
+    file_content = "Toto je obsah souboru."
+    return send_file(
+        io.BytesIO(file_content.encode()),
+        mimetype='text/plain',
+        as_attachment=True,
+        download_name='soubor.txt'
+    )
 
 # 9. Vrácení přesměrování na externí web
 @app.route('/google')
 def google_redirect():
     # Přesměrování na externí web (např. Google)
-    pass
+    # https://www.google.com/ --> sem se dostanu po zavolani endpointu /google
+    return redirect("https://www.google.com")
 
 # 10. Vlastní HTTP status kód a hlavičky
 @app.route('/custom')
 def custom_response():
     # Vrácení odpovědi s vlastním status kódem a hlavičkami
-    pass
+    response = app.response_class(
+        response="Tohle je ma odpoved",
+        status=201,
+        headers={"X-Example": "Test"}
+    )
+    return response
 
 @app.route('/styled')
 def styled():
     # Vrácení HTML stránky s vloženým CSS stylem
-    pass
+    # vratit webovou stranku, kde nadpis bude cerveny text bude modry, a body bude sedy
+    # pokus je vraceni html kodu primo
+    # return '''
+    # <html>
+    #   <head>
+    #     <style>
+    #       body { background: gray; }
+    #       h1 { color: red; }
+    #       p { color: blue; }
+    #     </style>
+    #   </head>
+    #   <body>
+    #     <h1>Stylovaná stránka</h1>
+    #     <p>Toto je stránka s vloženým CSS.</p>
+    #   </body>
+    # </html>
+    # '''
+    # pokus 2. vygenerovani stranky
+    return render_template("style.html")
 
 @app.route('/plain')
 def plain():
     # Vrácení čistého textu s nastaveným content-type
-    pass
+    return "Cisty text", 200, {"Content-type": "text/plain" }
 
 @app.route('/headers')
 def headers():
     # Vrácení odpovědi s vlastními hlavičkami
-    pass
+    return ("Odpověď s hlavičkami", 200, {
+        "X-First": "Jedna",
+        "X-Second": "Dva"
+    })
 
 @app.route('/xml')
 def xml():
     # Vrácení XML odpovědi
-    pass
+    xml_data = "<note><to>User</to><body>Ahoj!</body></note>"
+    return xml_data, 200, {'Content-Type': 'application/xml'}
 
 @app.route('/csv')
 def csv():
     # Vrácení CSV dat
-    pass
+    csv_data = "jmeno,vek\nPetr,30\nAnna,25"
+    return csv_data, 200, {'Content-Type': 'text/csv'}
 
 @app.route('/set-cookie')
 def set_cookie():
-    # Nastavení cookie v odpovědi
-    pass
+    # Nastaví cookie v odpovědi
+    resp = app.make_response("Cookie nastaveno")
+    resp.set_cookie('moje_cookie', 'Tohle je muj tajny a sledovaci kod')
+    return resp
 
 @app.route('/get-cookie')
 def get_cookie():
-    # Získání hodnoty cookie z požadavku
-    pass
+    # Získá hodnotu cookie
+    value = request.cookies.get('moje_cookie', 'nenastaveno')
+    return f'Hodnota cookie: {value}'
 
 @app.route('/status')
 def status():
     # Vrácení pouze status kódu bez obsahu (např. 204)
-    pass
+    return '', 203
 
 @app.route('/json-list')
 def json_list():
     # Vrácení JSON pole (seznam slovníků)
-    pass
+    json = [{ "status" : "ok", "text" : "Ahoj svete", "kod" : 200},{ "status" : "ok", "text" : "Ahoj svete", "kod" : 200} ]
+    return json
 
 @app.route('/json-nested')
 def json_nested():
     # Vrácení vnořeného JSON (slovník v slovníku)
-    pass
+    json = [{ "status" : "ok", "text" : "Ahoj svete", "kod" : 200, "jsonfile" : { "status" : "ok", "text" : "Ahoj svete", "kod" : 200}},{ "status" : "ok", "text" : "Ahoj svete", "kod" : 200} ]
+    return json
 
 @app.route('/html-table')
 def html_table():
     # Vrácení HTML stránky s tabulkou
-    pass
+    # html tagy --> table, tr, th, td
+    # jednoducha tabulka o dvou radcich
+
+    # vracim pouze dany kus html
+    # return '''
+    # <table border="1">
+    #   <tr><th>Jméno</th><th>Věk</th></tr>
+    #   <tr><td>Petr</td><td>30</td></tr>
+    #   <tr><td>Anna</td><td>25</td></tr>
+    # </table>
+    # '''
+
+    # vracim vyrenderovanou stranku 
+    return render_template("table.html")
 
 @app.route('/inline-js')
 def inline_js():
     # Vrácení HTML stránky s JavaScriptem
-    pass
+    #  html tagy -> button, h2
+    # javascript -> by mel otevrit popup okno (vyskakovaci okno)
+    # return '''
+    # <html>
+    #   <body>
+    #     <h2>Ukázka JavaScriptu</h2>
+    #     <button onclick="alert('Ahoj ze Flasku!')">Klikni mě</button>
+    #   </body>
+    # </html>
+    # '''
+    return render_template("inlineJS.html")
 
 @app.route('/inline-img')
 def inline_img():
     # Vrácení HTML stránky s obrázkem
-    pass
+    return '''
+    <html>
+      <body>
+        <h2>Obrázek</h2>
+        <img src="https://www.python.org/static/community_logos/python-logo.png" alt="Python logo" width="200">
+      </body>
+    </html>
+    '''
 
 @app.route('/params')
 def params():
     # Vrácení GET parametrů z URL
-    pass
+    args = dict(request.args)
+    return f'Parametry v URL: {args}'
+    
 
 @app.route('/post-json', methods=['POST'])
 def post_json():
     # Přijetí a vrácení JSON dat v POST požadavku
-    pass
+    data = request.get_json()
+    return {"Obdrzel" : data}
 
 @app.route('/uppercase/<text>')
 def uppercase(text):
     # Vrácení textu převedeného na velká písmena
-    pass
+    # return text.lower()
+    return text.upper()
 
 @app.route('/repeat/<int:n>/<word>')
 def repeat(n, word):
     # Vrácení slova opakovaného n-krát
-    pass
+    text = word * n
+    return text
 
 if __name__ == '__main__':
     app.run(debug=True)
