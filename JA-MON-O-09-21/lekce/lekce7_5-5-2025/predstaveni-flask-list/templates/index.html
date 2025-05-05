@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Demo – Testovací odkazy</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 2em; }
+        h1 { color: #007bff; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 0.7em; }
+        a { color: #0056b3; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #e9ecef; padding: 2px 6px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Testovací odkazy pro Flask aplikaci</h1>
+    <ul>
+        <li><a href="{{ url_for('home') }}">/ – Hlavní stránka</a></li>
+        <li><a href="{{ url_for('about') }}">/about – O nás</a></li>
+        <li><a href="{{ url_for('show_user', username='testuser') }}">/user/&lt;username&gt; – Dynamický uživatel</a></li>
+        <li><a href="{{ url_for('show_post', post_id=123) }}">/post/&lt;int:post_id&gt; – Dynamický příspěvek</a></li>
+        <li><a href="{{ url_for('show_category', category='flask') }}">/category/&lt;category&gt; – Dynamická kategorie</a></li>
+        <li><a href="{{ url_for('login') }}">/login – Přihlášení (GET/POST)</a></li>
+        <li><a href="{{ url_for('hello', name='Svět') }}">/hello/&lt;name&gt; – Šablona hello.html</a></li>
+        <li><a href="{{ url_for('form') }}">/form – Formulář (GET/POST)</a></li>
+        <li><a href="{{ url_for('redirect_example') }}">/redirect – Přesměrování na hlavní stránku</a></li>
+        <li><a href="{{ url_for('error_example') }}">/error – Chyba 404</a></li>
+        <li><a href="{{ url_for('text_response') }}">/text – Textová odpověď</a></li>
+        <li><a href="{{ url_for('html_response') }}">/html – HTML odpověď</a></li>
+        <li><a href="{{ url_for('json_response') }}">/json – JSON odpověď</a></li>
+        <li><a href="{{ url_for('tuple_response') }}">/tuple – Tuple odpověď (obsah, status, hlavičky)</a></li>
+        <li><a href="{{ url_for('download_file') }}">/download – Stažení souboru</a></li>
+        <li><a href="{{ url_for('google_redirect') }}">/google – Přesměrování na Google</a></li>
+        <li><a href="{{ url_for('custom_response') }}">/custom – Vlastní status a hlavičky</a></li>
+        <li><a href="{{ url_for('styled') }}">/styled – HTML s vloženým CSS</a></li>
+        <li><a href="{{ url_for('plain') }}">/plain – Text s content-type</a></li>
+        <li><a href="{{ url_for('headers') }}">/headers – Vlastní hlavičky</a></li>
+        <li><a href="{{ url_for('xml') }}">/xml – XML odpověď</a></li>
+        <li><a href="{{ url_for('csv') }}">/csv – CSV odpověď</a></li>
+        <li><a href="{{ url_for('set_cookie') }}">/set-cookie – Nastavit cookie</a></li>
+        <li><a href="{{ url_for('get_cookie') }}">/get-cookie – Získat cookie</a></li>
+        <li><a href="{{ url_for('status') }}">/status – Prázdná odpověď (204)</a></li>
+        <li><a href="{{ url_for('json_list') }}">/json-list – JSON pole</a></li>
+        <li><a href="{{ url_for('json_nested') }}">/json-nested – Vnořený JSON</a></li>
+        <li><a href="{{ url_for('html_table') }}">/html-table – HTML tabulka</a></li>
+        <li><a href="{{ url_for('inline_js') }}">/inline-js – HTML s JavaScriptem</a></li>
+        <li><a href="{{ url_for('inline_img') }}">/inline-img – HTML s obrázkem</a></li>
+        <li><a href="{{ url_for('params') }}?a=1&b=2">/params – Parametry v URL</a></li>
+        <li>
+            <form action="{{ url_for('post_json') }}" method="post" style="display:inline;">
+                <button type="submit" style="background:none;border:none;padding:0;color:#0056b3;cursor:pointer;text-decoration:underline;">
+                    /post-json – Přijmout JSON (POST)
+                </button>
+            </form>
+        </li>
+        <li><a href="{{ url_for('uppercase', text='ahoj') }}">/uppercase/&lt;text&gt; – Velká písmena</a></li>
+        <li><a href="{{ url_for('repeat', n=3, word='flask') }}">/repeat/&lt;n&gt;/&lt;word&gt; – Opakování slova</a></li>
+    </ul>
+    <p>
+        <strong>Poznámka:</strong> Některé odkazy (např. <code>/login</code>, <code>/form</code>, <code>/post-json</code>) podporují i POST metodu.<br>
+        Pro <code>/hello/&lt;name&gt;</code> a další dynamické routy lze měnit parametr v URL.<br>
+        U <code>/params</code> si zkus změnit parametry v adrese.
+    </p>
+</body>
+</html>
