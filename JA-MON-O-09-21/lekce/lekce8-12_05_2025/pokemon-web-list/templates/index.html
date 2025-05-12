@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokémon Vyhledávač</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pokémon Vyhledávač</h1>
+        <form method="post">
+            <input type="text" name="name" placeholder="Zadej jméno Pokémona" required>
+            <button type="submit">Hledat</button>
+        </form>
+        <!-- Úkol: Pokud existuje proměnná error, zobraz ji uživateli. -->
+        <!-- Použij podmínku {% if error %} ... {% endif %} a uvnitř zobraz {{ error }} -->
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <!-- Úkol: Pokud existuje proměnná data, zobraz informace o Pokémonovi. -->
+        <!-- Použij podmínku {% if data %} ... {% endif %} -->
+        {% if data %}
+        <div class="pokemon-info">
+            <!-- Zobraz obrázek Pokémona pomocí {{ data.img }} a {{ data.name }} -->
+            <img src="{{ data.img }}" alt="{{ data.name }}">
+            <!-- Zobraz jméno Pokémona pomocí {{ data.name }} -->
+            <h2>{{ data.name }}</h2>
+            <!-- Zobraz další informace pomocí {{ data.id }}, {{ data.base_experience }}, {{ data.height }}, {{ data.weight }} -->
+            <div><span class="label">Pokédex číslo:</span> {{ data.id }}</div>
+            <div><span class="label">Základní zkušenost:</span> {{ data.base_experience }}</div>
+            <div><span class="label">Výška:</span> {{ data.height }} dm</div>
+            <div><span class="label">Váha:</span> {{ data.weight }} hg</div>
+            <!-- Zobraz typy a schopnosti pomocí {{ data.types|join(', ') }} a {{ data.abilities|join(', ') }} -->
+            <div><span class="label">Typy:</span> {{ data.types|join(', ') }}</div>
+            <div><span class="label">Schopnosti:</span> {{ data.abilities|join(', ') }}</div>
+            <!-- Zobraz statistiky pomocí {{ data.stats }} -->
+            <div><span class="label">Statistiky:</span>
+                <ul style="list-style:none; padding:0;">
+                    <li>HP: {{ data.stats.hp }}</li>
+                    <li>Attack: {{ data.stats.attack }}</li>
+                    <li>Defense: {{ data.stats.defense }}</li>
+                    <li>Special Attack: {{ data.stats['special-attack'] }}</li>
+                    <li>Special Defense: {{ data.stats['special-defense'] }}</li>
+                    <li>Speed: {{ data.stats.speed }}</li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        <iframe
+                width="100%"
+                height="400"
+                frameborder="0"
+                style="border:0"
+                src="https://maps.google.com/maps?q={{ latitude }},{{ longitude }}&z=4&output=embed"
+                allowfullscreen>
+            </iframe>
+        <!-- Konec podmínky pro data -->
+    </div>
+</body>
+</html>
