@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabulka osob</title>
+</head>
+<body>
+    <h1>Tabulka osob</h1>
+    <!-- Úkol: Vygeneruj řádky tabulky podle seznamu osob. -->
+    <!-- 1. Použij cyklus {% for osoba in osoby %} pro projití všech osob. -->
+    <!-- 2. V každém řádku zobraz jméno a věk pomocí {{ osoba.jmeno }} a {{ osoba.vek }}. -->
+    <!-- 3. Nezapomeň cyklus ukončit pomocí {% endfor %}. -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Jméno</th>
+                <th>Věk</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for osoba in osoby %}
+                <tr>
+                    <td>
+                        {{ osoba.jmeno }}
+                    </td>
+                    <td>
+                        {{ osoba.vek }}
+                    </td>
+                </tr>
+            {% endfor %}            
+        </tbody>
+    </table>
+</body>
+</html>

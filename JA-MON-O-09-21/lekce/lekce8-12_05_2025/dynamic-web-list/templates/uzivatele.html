@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Seznam uživatelů</title>
+</head>
+<body>
+    <h1>Seznam uživatelů</h1>
+    <!-- Úkol: Vypiš seznam uživatelů pomocí šablonovacího jazyka. -->
+    <!-- 1. Pokud existují uživatelé (proměnná users není prázdná), zobraz je v seznamu <ul>. -->
+    <!-- 2. Použij cyklus {% for user in users %}  {% endfor %} pro projití všech uživatelů. -->
+    <!-- 3. Každého uživatele zobraz v položce seznamu <li>{{ user }}</li>. -->
+    <!-- 4. Pokud nejsou žádní uživatelé, zobraz hlášku "Žádní uživatelé nejsou k dispozici." -->
+    {% if users %}
+    <ul>
+    {% for user in users %}
+        <li>{{ user }}</li>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p>Žádní uživatelé nejsou k dispozici.</p>
+    {% endif %}
+</body>
+</html>

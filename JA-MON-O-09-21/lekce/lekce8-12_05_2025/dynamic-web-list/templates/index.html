@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamický web – ukázky Flask</title>
+</head>
+<body>
+    <h1>Dynamický web – ukázky Flask</h1>
+    <ul>
+        <li><a href="{{ url_for('pozdrav') }}">Vkládání proměnné do šablony</a></li>
+        <li><a href="{{ url_for('uzivatele') }}">Výpis seznamu a podmínka</a></li>
+        <li><a href="{{ url_for('tabulka') }}">Generování tabulky z dat</a></li>
+        <li><a href="{{ url_for('dotaz') }}">Formulář a zpracování dat</a></li>
+        <li><a href="{{ url_for('pozdrav_param', jmeno='Tereza') }}">Parametr v URL</a></li>
+    </ul>
+</body>
+</html>
