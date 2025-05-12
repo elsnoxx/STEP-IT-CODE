@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>O mně</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        .icon-list img {
+            height: 32px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .logo-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .logo-img {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            object-fit: contain;
+            width: 108px;
+            height: 108px;
+            margin-right: 12px;
+            padding: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-primary">O mně</h1>
+        <nav class="mb-4">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Domů</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('about') }}">O mně</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">Kontakt</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title">IT konzultant &amp; lektor</h2>
+                <ul class="list-unstyled mb-4">
+                    <li class="logo-row">
+                        <img src="/static/img/Hyundai_AutoEver_logo.svg.png" alt="Hyundai logo" class="logo-img">
+                        Pracuji jako IT konzultant ve společnosti Hyundai
+                    </li>
+                    <li class="logo-row">
+                        <img src="/static/img/logos.svg" alt="Step IT Academy logo" class="logo-img">
+                        Ve volném čase lektoruji v Step IT Academy
+                    </li>
+                    <li class="logo-row">
+                        <img src="/static/img/fei_cs.svg" alt="VSB logo" class="logo-img">
+                        Studuji na VŠB-TUO bakaláře v informatice
+                    </li>
+                </ul>
+                <h4>Dovednosti</h4>
+                <div class="icon-list mb-3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" title="SQL">
+                </div>
+                <ul>
+                    <li>Umím programovat v JavaScriptu, C#, Pythonu, C++, SQL</li>
+                    <li>Programuji webové stránky a desktopové aplikace</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

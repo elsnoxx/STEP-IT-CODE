@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Moje osobní stránka</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-primary">Vítejte na mé osobní stránce!</h1>
+        <nav class="mb-4">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('home') }}">Domů</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">O mně</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">Kontakt</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <p class="lead">Toto je ukázkový web vytvořený pomocí Flasku.</p>
+                <p>
+                    Najdete zde základní informace o mně, mé pracovní zkušenosti, dovednosti a možnost mě kontaktovat.
+                </p>
+                <p>
+                    Web je postaven jako jednoduchá ukázka osobní prezentace s využitím Pythonu, Flasku a Bootstrapu.
+                </p>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-success">Co zde najdete?</h5>
+                        <ul>
+                            <li>Informace o mé profesní dráze</li>
+                            <li>Přehled mých dovedností a znalostí</li>
+                            <li>Možnost mě kontaktovat přes formulář</li>
+                            <li>Ukázky technologií, se kterými pracuji</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-info">Proč tento web?</h5>
+                        <p>
+                            Tento web slouží jako moje online vizitka a prostor pro sdílení informací o sobě. 
+                            Pokud vás zajímá spolupráce, výuka nebo konzultace v oblasti IT, neváhejte mě kontaktovat.
+                        </p>
+                        <p>
+                            Rád se učím nové věci a sdílím své zkušenosti s ostatními.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="text-center text-muted mt-4 mb-2">
+            &copy; {{ 2025 }} Richard Ficek &ndash; Osobní web ve Flasku
+        </footer>
+    </div>
+</body>
+</html>
