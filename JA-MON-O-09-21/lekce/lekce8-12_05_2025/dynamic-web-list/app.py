@@ -59,10 +59,16 @@ def pozdrav_param(jmeno):
     # Hodnota <jmeno> z adresy se pošle do šablony pozdrav.html
     return render_template("pozdrav.html", jmeno=jmeno)
 
-# Sablonu v about.html, ktera budu obrasahovat vase jmeno, prijmeni a vek 
-# -> vse se bude predavat jako samostana promenna
+
 @app.route("/about")
 def about():
+    # Samostatná práce s proměnnými v šabloně
+    # Do šablony about.html pošleme proměnné jmeno, prijmeni a vek
+    # Zde můžeš změnit hodnoty proměnných podle sebe
+    # (např. jméno, příjmení a věk)
+    # Vytvoř si vlastní šablonu about.html
+    # a přidej do ní proměnné jmeno, prijmeni a vek
+    # a jejich hodnoty
     jmeno = "Richard"
     prijmeni = "Ficek"
     vek = 24
