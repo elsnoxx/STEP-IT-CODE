@@ -22,33 +22,33 @@
             <div class="todo-list">
                 <h2>Splněné úkoly</h2>
                 <!-- Pokud existují splněné úkoly, vypiš je -->
-                
+                {% if splnene %}
                     <ul>
-                        
+                        {% for done in splnene %}
                             <li class="done">
                                 <!-- Zobraz text úkolu -->
-                                <strong>text</strong>
+                                <strong>{{ done.ukol }}</strong>
                                 <!-- Pokud je poznámka, zobraz ji -->
                                 
-                                    <br><small>Poznámka: </small>
+                                    <br><small>Poznámka: {{done.poznamka}}</small>
                                 
                                 <!-- Pokud je předmět, zobraz ho -->
                                 
-                                    <br><small>Předmět: </small>
+                                    <br><small>Předmět: {{ done.predmet }}</small>
                                 
                                 <!-- Zobraz datum zadání -->
-                                <br><small>Zadáno: </small>
+                                <br><small>Zadáno: {{ done.created }}</small>
                                 <!-- Zobraz datum splnění zeleně -->
-                                <br><small style="color: #388e3c;">Splněno: </small>
+                                <br><small style="color: #388e3c;">Splněno: {{ done.completed }} </small>
                             </li>
-                        
+                        {% endfor %}
                     </ul>
                     <!-- Zobraz počet splněných úkolů -->
                     <p>Počet splněných úkolů: <strong> 0 </strong></p>
-                
+                {% else %}
                     <!-- Pokud nejsou splněné úkoly -->
                     <p>Žádné splněné úkoly.</p>
-                
+                {% endif %}
             </div>
         </div>
         <!-- Pravý sloupec: Smazané úkoly -->
@@ -56,35 +56,35 @@
             <div class="todo-list">
                 <h2>Smazané úkoly</h2>
                 <!-- Pokud existují smazané úkoly, vypiš je -->
-                
+                {% if smazane %}
                     <ul>
-                        
+                        {% for del in smazane %}
                             <li class="deleted">
                                 <!-- Zobraz text úkolu -->
-                                <strong> text</strong>
+                                <strong> {{del.ukol}} </strong>
                                 <!-- Pokud je poznámka, zobraz ji -->
                                 
-                                    <br><small>Poznámka: </small>
+                                    <br><small>Poznámka: {{del.poznamka}} </small>
                                 
                                 <!-- Pokud je předmět, zobraz ho -->
                                 
-                                    <br><small>Předmět:</small>
+                                    <br><small>Předmět: {{del.predmet}} </small>
                                 
                                 <!-- Zobraz datum zadání -->
-                                <br><small>Zadáno: </small>
+                                <br><small>Zadáno: {{del.created}} </small>
                                 <!-- Pokud je datum smazání, zobraz ho červeně -->
                                 
-                                    <br><small style="color: #b71c1c;">Smazáno: </small>
+                                    <br><small style="color: #b71c1c;">Smazáno: {{del.completed}} </small>
                                 
                             </li>
-                        
+                        {% endfor %}
                     </ul>
                     <!-- Zobraz počet smazaných úkolů -->
-                    <p>Počet smazaných úkolů: <strong> 0 </strong></p>
-                
+                    <p>Počet smazaných úkolů: <strong> {{ countSmazane }} </strong></p>
+                {% else %}
                     <!-- Pokud nejsou smazané úkoly -->
                     <p>Žádné smazané úkoly.</p>
-                
+                {% endif %}
             </div>
         </div>
     </div>

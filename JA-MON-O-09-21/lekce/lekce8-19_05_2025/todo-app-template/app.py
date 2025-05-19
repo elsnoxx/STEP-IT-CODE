@@ -44,12 +44,18 @@ def index():
 @app.route('/done/<int:idx>', methods=['POST'])
 def done(idx):
     """
+
     Označí úkol jako splněný.
     - Najde úkol podle indexu v seznamu todos.
     - Přesune ho do seznamu splněných úkolů (todos_done).
     - Nastaví mu čas splnění.
     """
     # Zde doplň logiku pro přesun úkolu do splněných
+    if 0 <= idx < len(todos):
+        todos[idx]['done'] = True
+        todos[idx]['completed'] = datetime.now().strftime('%d.%m.%Y %H:%M')
+        todos_done.append(todos[idx])
+
     return redirect('/')
 
 @app.route('/delete/<int:idx>')
@@ -61,6 +67,11 @@ def delete(idx):
     - Může nastavit čas smazání.
     """
     # Zde doplň logiku pro přesun úkolu do smazaných
+    if 0 <= idx < len(todos):
+        todos[idx]['completed'] = datetime.now().strftime('%d.%m.%Y %H:%M')
+        todo_smazane.append(todos[idx])
+        todos.pop(idx)
+
     return redirect('/')
 
 @app.route('/edit/<int:idx>', methods=['GET', 'POST'])
@@ -71,7 +82,25 @@ def edit(idx):
     - POST: uloží změny do úkolu v seznamu todos.
     """
     # Zde doplň logiku pro úpravu úkolu (GET zobrazí formulář, POST uloží změny)
-    return render_template('edit.html', todo=todos[idx], idx=idx)
+    if 0 <= idx < len(todos):
+        if request.method == 'POST':
+            print(request.form)
+            ukol = request.form['ukol']
+            poznamka = request.form['poznamka']
+            ocekavani = request.form['ocekavani']
+            predmet = request.form['predmet']
+            print(ukol, poznamka, ocekavani, predmet)
+
+            print(todos[idx])
+            todos[idx]['ukol'] = ukol
+            todos[idx]['poznamka'] = poznamka
+            todos[idx]['ocekavani'] = ocekavani
+            todos[idx]['predmet'] = predmet
+
+            return redirect('/')
+        else:
+            return render_template('edit.html', todo=todos[idx], idx=idx)
+    return redirect('/')
 
 @app.route('/history')
 def history():
@@ -81,7 +110,7 @@ def history():
     - U každého úkolu může být zobrazen čas splnění/smazání a další informace.
     """
     # Zde doplň logiku pro zobrazení splněných a smazaných úkolů
-    return render_template('history.html', splnene=todos_done, smazane=todo_smazane)
+    return render_template('history.html', splnene=todos_done, smazane=todo_smazane, countSplnene=len(todos_done), countSmazane=len(todo_smazane))
 
 @app.errorhandler(404)
 def page_not_found(e):
