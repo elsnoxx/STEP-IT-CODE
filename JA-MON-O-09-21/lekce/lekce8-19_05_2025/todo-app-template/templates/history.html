@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jednoduchý To-Do List</title>
+    <!-- Přidej odkazy na CSS pro stylování -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- Navigace mezi stránkami -->
+    <nav style="margin-bottom: 2em;">
+        <a href="{{ url_for('index') }}">Domů</a> |
+        <a href="{{ url_for('history') }}">Historie</a>
+    </nav>
+    <h1>Historie To-Do Listu</h1>
+    <div class="row">
+        <!-- Levý sloupec: Splněné úkoly -->
+        <div class="col-md-6">
+            <div class="todo-list">
+                <h2>Splněné úkoly</h2>
+                <!-- Pokud existují splněné úkoly, vypiš je -->
+                
+                    <ul>
+                        
+                            <li class="done">
+                                <!-- Zobraz text úkolu -->
+                                <strong>text</strong>
+                                <!-- Pokud je poznámka, zobraz ji -->
+                                
+                                    <br><small>Poznámka: </small>
+                                
+                                <!-- Pokud je předmět, zobraz ho -->
+                                
+                                    <br><small>Předmět: </small>
+                                
+                                <!-- Zobraz datum zadání -->
+                                <br><small>Zadáno: </small>
+                                <!-- Zobraz datum splnění zeleně -->
+                                <br><small style="color: #388e3c;">Splněno: </small>
+                            </li>
+                        
+                    </ul>
+                    <!-- Zobraz počet splněných úkolů -->
+                    <p>Počet splněných úkolů: <strong> 0 </strong></p>
+                
+                    <!-- Pokud nejsou splněné úkoly -->
+                    <p>Žádné splněné úkoly.</p>
+                
+            </div>
+        </div>
+        <!-- Pravý sloupec: Smazané úkoly -->
+        <div class="col-md-6">
+            <div class="todo-list">
+                <h2>Smazané úkoly</h2>
+                <!-- Pokud existují smazané úkoly, vypiš je -->
+                
+                    <ul>
+                        
+                            <li class="deleted">
+                                <!-- Zobraz text úkolu -->
+                                <strong> text</strong>
+                                <!-- Pokud je poznámka, zobraz ji -->
+                                
+                                    <br><small>Poznámka: </small>
+                                
+                                <!-- Pokud je předmět, zobraz ho -->
+                                
+                                    <br><small>Předmět:</small>
+                                
+                                <!-- Zobraz datum zadání -->
+                                <br><small>Zadáno: </small>
+                                <!-- Pokud je datum smazání, zobraz ho červeně -->
+                                
+                                    <br><small style="color: #b71c1c;">Smazáno: </small>
+                                
+                            </li>
+                        
+                    </ul>
+                    <!-- Zobraz počet smazaných úkolů -->
+                    <p>Počet smazaných úkolů: <strong> 0 </strong></p>
+                
+                    <!-- Pokud nejsou smazané úkoly -->
+                    <p>Žádné smazané úkoly.</p>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Konec stránky -->
+</body>
+</html>

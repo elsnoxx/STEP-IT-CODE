@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Editace úkolu</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Editace úkolu</h1>
+    <form method="post">
+        <!-- Zde doplň input pro text úkolu, předvyplněný hodnotou  -->
+        <label for="ukol">Ukol: </label>
+        <input type="text" id="ukol" name="ukol" value="{{todo.ukol}}" required>
+        
+        <!-- Zde doplň input pro poznámku, předvyplněný hodnotou todo.poznamka -->
+        
+        <!-- Zde doplň input typu date, předvyplněný hodnotou todo.ocekavane -->
+        
+        <!-- Zde doplň select s možnostmi, předvyplněný podle todo.predmet -->
+        <label for="predmet">Předmět</label>
+        <select id="predmet" name="predmet" class="form-control">
+            <option value="">--Vyber předmět--</option>
+            <!-- Přidej další možnosti: Matematika, Český jazyk, Angličtina, Informatika-->
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+        <!-- Vytvořte tlačítko s type submit  -->
+        
+    </form>
+    <!-- Vytvořte odkaz na vraceni se zpet  -->
+        
+</body>
+</html>

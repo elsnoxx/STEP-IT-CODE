@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jednoduchý To-Do List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <nav style="margin-bottom: 2em;">
+        <a href="{{ url_for('index') }}">Domů</a> |
+        <a href="{{ url_for('history') }}">Historie</a>
+    </nav>
+    <h1>To-Do List</h1>
+    <!-- Formulář pro přidání nového úkolu -->
+    <form method="post" class="border rounded p-3 mb-4 bg-light shadow-sm justify-content-center display-flex">
+        <fieldset>
+            <div class="form-row border rounded p-3 mb-4 bg-light shadow-sm ">
+                <!-- Pole pro zadání textu úkolu -->
+                <div class="form-group col">
+                    <label for="ukol">Úkol*</label>
+                    <input type="text" id="ukol" name="ukol" class="form-control" placeholder="Zadej úkol" required>
+                </div>
+                <!-- Pole pro poznámku -->
+                <div class="form-group col">
+                    <label for="poznamka">Poznámka</label>
+                    <input id="poznamka" type="text" name="poznamka" class="form-control" placeholder="Poznamka">
+                </div>
+                <!-- Pole pro očekávané datum splnění -->
+                <div class="form-group col">
+                    <label for="ocekavani">Očekávané splnění</label>
+                    <input type="date" id="ocekavani" name="ocekavani" class="form-control">
+                </div>
+                <!-- Zde doplň select s možnostmi, předvyplněný podle todo predmet -->
+                <div class="form-group col">
+                    <label for="predmet">Předmět</label>
+                    <select id="predmet" name="predmet" class="form-control">
+                        <option value="">--Vyber předmět--</option>
+                        <!-- Přidej další možnosti: , , , -->
+                        <option>Matematika</option>
+                        <option>Český jazyk</option>
+                        <option>Angličtina</option>
+                        <option>Informatika</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Tlačítko pro přidání úkolu -->
+            <div class="form-group col-auto align-self-end ">
+                <button type="submit" class="btn btn-primary mt-2">Přidat</button>
+            </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="todo-list">
+        <!-- Zde budou vypsány úkoly -->
+        {% if todos %}
+        <ul>
+            {% for todo in todos %}
+            <li class="">
+                <!-- Formulář pro označení úkolu jako splněný -->
+                <form action="/done/{{loop.index0}}" method="post" style="display:inline;">
+                    <button type="submit" class="btn-action" title="Označit jako splněné/nesplněné">
+                        {% if todo.done %}✅{% else %}⬜{% endif %}
+                    </button>
+                </form>
+                <span class="todo-text" style="margin-left: 0.5em;">
+                    <!-- Zobraz text úkolu -->
+                    <strong> {{todo.ukol}} </strong>
+                    <!-- Pokud je poznámka, zobraz ji -->
+                    {% if todo.poznamka %}
+                    <br><small>Poznámka: {{todo.ocekavani}}</small>
+                    {% endif %}
+                    <!-- Pokud je očekávané datum splnění, zobraz ho -->
+                    {% if todo.poznamka %}
+                    <br><small>Očekávané splnění: {{ todo.ocekavani }} </small>
+                    {% endif %}
+                    <!-- Pokud je předmět, zobraz ho -->
+                    {% if todo.predmet %}
+                    <br><small>Předmět: {{todo.predmet}} </small>
+                    {% endif %}
+                    <!-- Zobraz datum zadání úkolu -->
+                    <br><small class="text-muted">Zadáno: {{todo.created}} </small>
+                </span>
+                <!-- Odkaz na editaci úkolu -->
+                <a href="/edit/{{loop.index0}}" class="btn-action" title="Upravit úkol">✏️</a>
+                <!-- Odkaz na smazání úkolu -->
+                <a href="/delete/{{loop.index0}}" class="btn-action" title="Smazat úkol">🗑️</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <!-- Zobraz počet aktuálních úkolů -->
+        <p>Počet úkolů: {{count}} </p>
+        {% else %}
+        <!-- Pokud nejsou žádné úkoly -->
+        <p>Žádné úkoly.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
