@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>ISS - Aktuální poloha a lidé ve vesmíru</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-dark text-white">
+    <div class="container mt-5">
+        <h1 class="mb-4 text-info">Aktuální poloha ISS</h1>
+        {% if iss.error %}
+            <div class="alert alert-danger">{{ iss.error }}</div>
+        {% else %}
+            <ul class="list-group mb-4">
+                <li class="list-group-item bg-secondary text-white">Čas: {{ iss.time }}</li>
+                <li class="list-group-item bg-secondary text-white">Zeměpisná šířka: {{ iss.latitude }}</li>
+                <li class="list-group-item bg-secondary text-white">Zeměpisná délka: {{ iss.longitude }}</li>
+            </ul>
+            <iframe
+                width="100%"
+                height="400"
+                frameborder="0"
+                style="border:0"
+                src="https://maps.google.com/maps?q={{ iss.latitude }},{{ iss.longitude }}&z=4&output=embed"
+                allowfullscreen>
+            </iframe>
+        {% endif %}
+
+        <h2 class="mt-5 text-warning">Lidé aktuálně ve vesmíru</h2>
+        <ul class="list-group">
+            {% for person in people %}
+                <li class="list-group-item bg-secondary text-white">
+                    {{ person.name }} ({{ person.craft }})
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
