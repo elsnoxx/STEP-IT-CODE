@@ -8,12 +8,13 @@ V této složce najdete jednotlivé úkoly, jejich zadání a řešení. Každý
 
 ## Rozcestník na úkoly
 
-| Číslo úkolu | Název úkolu                                                 | Datum zadání | Datum odevzdání |
-|-------------|-------------------------------------------------------------|--------------|-----------------|
-| 1           | Úkol 1: Úvod do Pythonu                                     | 17.03.2025   | 24.03.2025      |
-| 2           | Úkol 2: Podmíněné příkazy                                   | 24.03.2025   | 31.03.2025      |
-| 4           | Úkol 4: OOP v Pythonu – Třída `BankovniUcet`                | 14.04.2025   | 21.04.2025      |
-| 4           | Úkol 4: Aplikace pro sledování ISS a lidí ve vesmíru        | 14.04.2025   | 21.04.2025      |
+| Číslo úkolu | Název úkolu                                                 |
+|-------------|-------------------------------------------------------------|
+| 1           | Úkol 1: Úvod do Pythonu                                     |
+| 2           | Úkol 2: Podmíněné příkazy                                   |
+| 3           | Úkol 4: OOP v Pythonu – Třída `BankovniUcet`                |
+| 4           | Úkol 4: Aplikace pro sledování ISS a lidí ve vesmíru        |
+
 
 > **Poznámka:** Data zadání a odevzdání jsou orientační a mohou se lišit podle pokynů vyučujícího.
 

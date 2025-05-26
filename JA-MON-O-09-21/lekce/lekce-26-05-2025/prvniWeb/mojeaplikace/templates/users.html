@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+</head>
+<body>
+    {% if users %}
+        {% for user in users %}
+            <p style="font-weight: bolder;">{{ user.firstname }} {{ user.lastname }}</p>
+        {% endfor %}
+    {% else %}
+        <p>None</p>
+    {% endif %}
+</body>
+</html>
