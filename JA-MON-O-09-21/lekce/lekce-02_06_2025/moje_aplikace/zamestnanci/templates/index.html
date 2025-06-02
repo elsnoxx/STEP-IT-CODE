@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ahoj svete</h1>
+    <a href="{% url 'dept_add'%}" > Add new department </a>
+    {% if dept %}
+    <ul>
+        {% for d in dept %}
+        <li>
+            <p>{{ d.deptno }} | {{ d.deptname }}</p>
+            <a href="{% url 'dept_detail' d.deptno %}"> Detail </a>
+            <a href="{% url 'dept_delete' d.deptno %}"> Smazat </a>
+            <a href="{% url 'dept_edit' d.deptno %}"> Edit </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Zadne oddeleni</p>
+    {% endif %}
+</body>
+</html>
