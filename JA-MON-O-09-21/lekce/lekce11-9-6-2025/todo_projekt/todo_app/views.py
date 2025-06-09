@@ -11,11 +11,23 @@ def index(request):
         # Získej data z formuláře (ukol, poznamka, ocekavane, predmet)
         # Vytvoř nový Todo objekt pomocí Todo.objects.create()
         # Přesměruj na stejnou stránku
-        pass
-    
+        text = request.POST.get('ukol')
+        poznamka = request.POST.get('poznamka', '')
+        ocekavane = request.POST.get('ocekavane') or None
+        predmet = request.POST.get('predmet', '')
+        
+        if text:
+            Todo.objects.create(
+                text=text,
+                poznamka=poznamka,
+                ocekavane=ocekavane,
+                predmet=predmet
+            )
+        return redirect('index')
     # Načti všechny úkoly kde deleted=False, seřaď podle data vytvoření
     # Vrať render s template 'index.html' a seznamem úkolů
-    return render(request, 'index.html')
+    todos = Todo.objects.filter(deleted=False).order_by('-created')
+    return render(request, 'index.html', {'todos': todos})
 
 def done(request, pk):
     """Označení úkolu jako splněného/nesplněného"""
@@ -25,9 +37,15 @@ def done(request, pk):
         # Pokud je done=True, nastav completed=aktuální čas
         # Pokud je done=False, nastav completed=None
         # Ulož změny pomocí save()
-        pass
+        todo = get_object_or_404(Todo, pk=pk)
+        todo.done = not todo.done
+        if todo.done:
+            todo.completed = timezone.now()
+        else:
+            todo.completed = None
+        todo.save()
     # Přesměruj na hlavní stránku
-    pass
+    return redirect('index')
 
 def delete(request, pk):
     """Soft delete úkolu"""
@@ -35,7 +53,11 @@ def delete(request, pk):
     # Nastav deleted=True a deleted_at=aktuální čas
     # Ulož změny
     # Přesměruj na hlavní stránku
-    pass
+    todo = get_object_or_404(Todo, pk=pk)
+    todo.deleted = not todo.deleted
+    todo.deleted_at = timezone.now()
+    todo.save()
+    return redirect('index')
 
 def edit(request, pk):
     """Editace existujícího úkolu"""
@@ -46,11 +68,11 @@ def edit(request, pk):
         # Přesměruj na hlavní stránku
         pass
     # Pro GET požadavek vrať template 'edit.html' s úkolem
-    pass
+    return render(request, 'edit.html')
 
 def history(request):
     """Zobrazení historie splněných a smazaných úkolů"""
     # Načti splněné úkoly: done=True, deleted=False
     # Načti smazané úkoly: deleted=True
     # Vrať template 'history.html' s oběma seznamy
-    pass
+    return render(request, 'history.html')

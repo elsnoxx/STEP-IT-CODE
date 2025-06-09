@@ -12,8 +12,8 @@
 <body>
     <!-- Navigace mezi stránkami -->
     <nav style="margin-bottom: 2em;">
-        <a href="{{ url_for('index') }}">Domů</a> |
-        <a href="{{ url_for('history') }}">Historie</a>
+        <a href="{% url 'index' %}">Domů</a> |
+        <a href="{% url 'history' %}">Historie</a>
     </nav>
     <h1>Historie To-Do Listu</h1>
     <div class="row">

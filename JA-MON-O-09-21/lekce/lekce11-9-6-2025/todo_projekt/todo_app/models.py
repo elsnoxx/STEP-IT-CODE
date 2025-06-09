@@ -8,7 +8,7 @@ class Todo(models.Model):
     # poznamka => textField, volitelné (blank), nazev "Poznámka"
     poznamka = models.TextField(blank=True, verbose_name="Poznámka")
     # ocekavane => dateField, volitelné, nazev "Očekávaný" (null)
-    ocekavane = models.DateField(null=True, blank=True, verbose_name="Očekávaný")
+    ocekavane = models.DateField(null=True, blank=True, verbose_name="Očekávaný termín")
     # predmet => charField, maximalní délka 100 znaků, volitelné, nazev "Předmět"
     predmet = models.CharField(max_length=100, blank=True, verbose_name="Předmět")
     # done => booleanField, výchozí hodnota False (default), nazev "Splněno"

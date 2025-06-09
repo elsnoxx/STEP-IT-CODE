@@ -19,12 +19,11 @@ from django.contrib import admin
 from django.urls import path
 from todo_app import views
 
-app_name = 'todo_app'
 urlpatterns = [
-    path('admin/', admin.site.urls), # admin rozhraní
-    path('', views.index, name="index"), # /
-    path('done/', views.index, name='index'), # done/1
-    path('delete/<innt:pk>/', views.delete, name="delete"), # delete/1
-    path('edit/<int:pk>/', views.edit, name="edit"), # edit/1
-    path('history/', views.history, name="history"), # history/
+    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('done/<int:pk>/', views.done, name='done'),
+    path('delete/<int:pk>/', views.delete, name='delete'),
+    path('edit/<int:pk>/', views.edit, name='edit'),
+    path('history/', views.history, name='history'),
 ]
