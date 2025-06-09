@@ -62,17 +62,30 @@ def delete(request, pk):
 def edit(request, pk):
     """Editace existujícího úkolu"""
     # Najdi úkol podle pk
+    todo = get_object_or_404(Todo, pk=pk)
     if request.method == 'POST':
         # Aktualizuj všechna pole úkolu z formuláře
         # Ulož změny
         # Přesměruj na hlavní stránku
-        pass
+        todo.text = request.POST.get('ukol', todo.text)
+        todo.poznamka = request.POST.get('poznmka', todo.poznamka)
+        ocekavane = request.POST.get('ocekavane')
+        if ocekavane:
+            todo.ocekavane = ocekavane
+        else:
+            todo.ocekavane = None
+        
+        todo.predmet = request.POST.get('predmet', todo.predmet)
+        todo.save()
+        return redirect('index')
     # Pro GET požadavek vrať template 'edit.html' s úkolem
-    return render(request, 'edit.html')
+    return render(request, 'edit.html', {'todo': todo})
 
 def history(request):
     """Zobrazení historie splněných a smazaných úkolů"""
     # Načti splněné úkoly: done=True, deleted=False
     # Načti smazané úkoly: deleted=True
     # Vrať template 'history.html' s oběma seznamy
-    return render(request, 'history.html')
+    splnene = Todo.objects.filter(done=True, deleted=False).order_by('-completed')
+    smazane = Todo.objects.filter(deleted=True).order_by('-deleted_at')
+    return render(request, 'history.html', {'splnene': splnene, 'smazane': smazane})

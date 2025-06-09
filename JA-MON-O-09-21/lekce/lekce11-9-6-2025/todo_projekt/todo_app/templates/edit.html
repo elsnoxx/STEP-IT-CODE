@@ -10,32 +10,18 @@
     <h1>Editace úkolu</h1>
     <form method="post">
         {% csrf_token %}
-        <!-- Zde doplň input pro text úkolu, předvyplněný hodnotou  -->
-        <label for="ukol">Ukol: </label>
-        <input type="text" id="ukol" name="ukol" value="{{todo.ukol}}" required>
-        
-        <!-- Zde doplň input pro poznámku, předvyplněný hodnotou todo.poznamka -->
-        <label for="poznamka">Poznmka: </label>
-        <input type="text" id="poznamka" name="poznamka" value="{{todo.poznamka}}">
-        
-        <!-- Zde doplň input typu date, předvyplněný hodnotou todo.ocekavane -->
-        <label for="ocekavani">Ocekavni: </label>
-        <input type="date" id="ocekavani" name="ocekavani" value="{{todo.ocekavani}}">
-        
-        <!-- Zde doplň select s možnostmi, předvyplněný podle todo.predmet -->
-        <label for="predmet">Předmět</label>
-        <select id="predmet" name="predmet" class="form-control">
+        <input type="text" name="ukol" value="{{ todo.text }}" required>
+        <input type="text" name="poznamka" value="{{ todo.poznamka }}">
+        <input type="date" name="ocekavane" value="{% if todo.ocekavane %}{{ todo.ocekavane|date:'Y-m-d' }}{% endif %}">
+        <select name="predmet">
             <option value="">--Vyber předmět--</option>
-            <!-- Přidej další možnosti: ,, , -->
-            <option value="Matematika" {% if todo.predmet == 'Matematika'%}selected{% endif %}>Matematika</option>
-            <option value="Český jazyk" {% if todo.predmet == 'Český jazyk'%}selected{% endif %}>Český jazyk</option>
-            <option value="Angličtina" {% if todo.predmet == 'Angličtina'%}selected{% endif %}>Angličtina</option>
-            <option value="Informatika" {% if todo.predmet == 'Informatika'%}selected{% endif %}>Informatika</option>
+            <option value="Matematika" {% if todo.predmet == "Matematika" %}selected{% endif %}>Matematika</option>
+            <option value="Český jazyk" {% if todo.predmet == "Český jazyk" %}selected{% endif %}>Český jazyk</option>
+            <option value="Angličtina" {% if todo.predmet == "Angličtina" %}selected{% endif %}>Angličtina</option>
+            <option value="Informatika" {% if todo.predmet == "Informatika" %}selected{% endif %}>Informatika</option>
         </select>
-        <!-- Vytvořte tlačítko s type submit  -->
-        <button type="submit">Ulozit</button>
+        <button type="submit">Uložit</button>
     </form>
-    <!-- Vytvořte odkaz na vraceni se zpet  -->
-    <p><a href="{% url 'index' %}">Zpe na hlavni stranku</a></p>
+    <p><a href="{% url 'index' %}">Zpět na seznam</a></p>
 </body>
 </html>
