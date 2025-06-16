@@ -14,6 +14,10 @@
     <nav style="margin-bottom: 2em;">
         <a href="{% url 'index' %}">Domů</a> |
         <a href="{% url 'history' %}">Historie</a>
+        {% if user.is_staff %}
+            <a href="{% url 'admin_stats' %}"> Admin statistika</a>
+        {% endif %}
+        <a href="{% url 'logout' %}">Odhlasit se {{ user.username }}</a>
     </nav>
     <h1>Historie To-Do Listu</h1>
     <div class="row">

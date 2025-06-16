@@ -4,15 +4,16 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Todo
 from django.utils import timezone
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.db.models import Count, Q
 
 def user_login(request):
     if request.method == 'POST':
-        username = request.get('username')
-        password = request.get('password')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
@@ -21,13 +22,22 @@ def user_login(request):
             return render(request, 'login.html', {'error' : 'Chybne prihlasovaci udaje'})
     return render(request, 'login.html' )
 
-def user_logout(request):
-
-    return render(request, 'login.html' )
-
 def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
 
-    return render(request, 'login.html' )
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'register.html', {'form' : form})
+
+def user_logout(request):
+    if request.user.is_authenticated:
+        auth_logout(request)
+    return redirect('login')
 
 @login_required
 def index(request):

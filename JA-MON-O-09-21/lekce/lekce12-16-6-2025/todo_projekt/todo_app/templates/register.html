@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrace - To-Do List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav style="margin-bottom: 2em;">
+        <a href="{% url 'login' %}">Přihlásit se</a> |
+        <a href="{% url 'register' %}">Registrace</a>
+    </nav>
+    
+    <main>
+        <h1>📝 Registrace</h1>
+        <form method="post" class="auth-form" style="max-width: 400px; margin: auto; display: block;">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Uživatelské jméno:</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {{ form.username.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Heslo:</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {{ form.password1.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Potvrzení hesla:</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {{ form.password2.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Registrovat se</button>
+        </form>
+        
+        <div class="text-center mt-3">
+            <p>Už máte účet? <a href="{% url 'login' %}" style="color: #1976d2;">Přihlaste se</a></p>
+        </div>
+        
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger mt-3">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>
