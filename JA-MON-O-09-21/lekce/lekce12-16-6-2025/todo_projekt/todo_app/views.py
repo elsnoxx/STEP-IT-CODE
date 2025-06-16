@@ -5,7 +5,31 @@ from django.urls import reverse
 from .models import Todo
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.forms import UserChangeForm
 
+def user_login(request):
+    if request.method == 'POST':
+        username = request.get('username')
+        password = request.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('index')
+        else:
+            return render(request, 'login.html', {'error' : 'Chybne prihlasovaci udaje'})
+    return render(request, 'login.html' )
+
+def user_logout(request):
+
+    return render(request, 'login.html' )
+
+def register(request):
+
+    return render(request, 'login.html' )
+
+@login_required
 def index(request):
     """Hlavní stránka s přidáváním úkolů"""
     if request.method == 'POST':
@@ -31,6 +55,7 @@ def index(request):
     todos = Todo.objects.filter(user=request.user, deleted=False).order_by('-created')
     return render(request, 'index.html', {'todos': todos})
 
+@login_required
 def done(request, pk):
     """Označení úkolu jako splněného/nesplněného"""
     if request.method == 'POST':
@@ -49,6 +74,7 @@ def done(request, pk):
     # Přesměruj na hlavní stránku
     return redirect('index')
 
+@login_required
 def delete(request, pk):
     """Soft delete úkolu"""
     # Najdi úkol podle pk
@@ -61,6 +87,7 @@ def delete(request, pk):
     todo.save()
     return redirect('index')
 
+@login_required
 def edit(request, pk):
     """Editace existujícího úkolu"""
     # Najdi úkol podle pk
@@ -83,6 +110,7 @@ def edit(request, pk):
     # Pro GET požadavek vrať template 'edit.html' s úkolem
     return render(request, 'edit.html', {'todo': todo})
 
+@login_required
 def history(request):
     """Zobrazení historie splněných a smazaných úkolů"""
     # Načti splněné úkoly: done=True, deleted=False
@@ -92,6 +120,7 @@ def history(request):
     smazane = Todo.objects.filter(user=request.user, deleted=True).order_by('-deleted_at')
     return render(request, 'history.html', {'splnene': splnene, 'smazane': smazane})
 
+@login_required
 def admin_stats(request):
     users_stats = []
     for user in User.objects.all():
@@ -111,5 +140,5 @@ def admin_stats(request):
         'splnene_ukoly': Todo.objects.filter(done=True, deleted=False).count(),
         'smazane_ukoly': Todo.objects.filter(deleted=True).count(),
     }
-    
+
     return render(request, 'admin-stats.html', {'users_stats' : users_stats , 'total_stats' : total_stats})
