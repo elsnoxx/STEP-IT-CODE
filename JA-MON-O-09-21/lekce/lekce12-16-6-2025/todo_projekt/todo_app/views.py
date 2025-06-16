@@ -105,10 +105,11 @@ def admin_stats(request):
         users_stats.append(stats)
 
     total_stats = {
-            'pocet_uzivatelu' : User.objects.count(),
-            'aktivni' : Todo.objects.filter(done=False, deleted=False).count(),
-            'splnene' : Todo.objects.filter(done=True, deleted=False).count(),
-            'smazane' : Todo.objects.filter(done=False, deleted=True).count(),
-            'celkem' : Todo.objects.count(),
-        }
+        'celkem_uzivatelu': User.objects.count(),
+        'celkem_ukolu': Todo.objects.count(),
+        'aktivni_ukoly': Todo.objects.filter(done=False, deleted=False).count(),
+        'splnene_ukoly': Todo.objects.filter(done=True, deleted=False).count(),
+        'smazane_ukoly': Todo.objects.filter(deleted=True).count(),
+    }
+    
     return render(request, 'admin-stats.html', {'users_stats' : users_stats , 'total_stats' : total_stats})
