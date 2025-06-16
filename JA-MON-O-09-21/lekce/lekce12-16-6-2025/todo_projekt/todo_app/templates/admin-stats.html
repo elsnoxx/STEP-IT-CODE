@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Statistiky - To-Do List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <nav style="margin-bottom: 2em;">
+        <a href="{% url 'index' %}">Hlavní stránka</a> |
+        <a href="{% url 'history' %}">Historie</a> |
+        <a href="{% url 'admin_stats' %}">Admin statistiky</a> |
+        
+    </nav>
+
+    <main class="admin-stats" style="max-width: 2000px;">
+        <h1>📊 Admin Statistiky</h1>
+
+        <!-- Celkové statistiky -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3>🌍 Celkové statistiky systému</h3>
+            </div>
+            <div class="card-body p-2">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="card text-center border-info">
+                            <div class="card-body p-2">
+                                <h4 class="card-title text-info mb-1">{{ total_stats.celkem_uzivatelu }}</h4>
+                                <p class="card-text mb-0">Uživatelů</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="card text-center border-secondary">
+                            <div class="card-body p-2">
+                                <h4 class="card-title text-secondary mb-1">{{ total_stats.celkem_ukolu }}</h4>
+                                <p class="card-text mb-0">Celkem úkolů</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="card text-center border-warning">
+                            <div class="card-body p-2">
+                                <h4 class="card-title text-warning mb-1">{{ total_stats.aktivni_ukoly }}</h4>
+                                <p class="card-text mb-0">Aktivních</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="card text-center border-success">
+                            <div class="card-body p-2">
+                                <h4 class="card-title text-success mb-1">{{ total_stats.splnene_ukoly }}</h4>
+                                <p class="card-text mb-0">Splněných</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="card text-center border-danger">
+                            <div class="card-body p-2">
+                                <h4 class="card-title text-danger mb-1">{{ total_stats.smazane_ukoly }}</h4>
+                                <p class="card-text mb-0">Smazaných</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistiky podle uživatelů -->
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h3>👥 Statistiky podle uživatelů</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover admin-table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>👤 Uživatel</th>
+                                <th class="hide-mobile">📧 Email</th>
+                                <th>⏳ Aktivní</th>
+                                <th>✅ Splněné</th>
+                                <th class="hide-mobile">🗑️ Smazané</th>
+                                <th>📊 Celkem</th>
+                                <th class="hide-mobile">📈 Produktivita</th>
+                                <th>🏆 Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stats in users_stats %}
+                            <tr>
+                                <td>
+                                    <strong>{{ stats.user.username }}</strong>
+                                    {% if stats.user.is_superuser %}
+                                    <span class="badge badge-danger">Admin</span>
+                                    {% elif stats.user.is_staff %}
+                                    <span class="badge badge-warning">Staff</span>
+                                    {% endif %}
+                                </td>
+                                <td class="hide-mobile">{{ stats.user.email|default:"---" }}</td>
+                                <td>
+                                    <span class="badge badge-warning">{{ stats.aktivni }}</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success">{{ stats.splnene }}</span>
+                                </td>
+                                <td class="hide-mobile">
+                                    <span class="badge badge-danger">{{ stats.smazane }}</span>
+                                </td>
+                                <td>
+                                    <strong>{{ stats.celkem }}</strong>
+                                </td>
+                                <td class="hide-mobile">
+                                    {% if stats.celkem > 0 %}
+                                    {% widthratio stats.splnene stats.celkem 100 %}%
+                                    {% else %}
+                                    0%
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if stats.celkem == 0 %}
+                                    <span class="badge badge-secondary">Nový</span>
+                                    {% elif stats.splnene > 10 %}
+                                    <span class="badge badge-success">🏆 Produktivní</span>
+                                    {% elif stats.splnene > 5 %}
+                                    <span class="badge badge-info">⭐ Aktivní</span>
+                                    {% else %}
+                                    <span class="badge badge-light">🌱 Začátečník</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="8" class="text-center text-muted">Žádní uživatelé</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rychlé akce -->
+        <div class="mt-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4>⚡ Rychlé akce</h4>
+                </div>
+                <div class="card-body">
+                    <a href="/admin/" class="btn btn-primary" target="_blank">🔧 Django Admin</a>
+                    <a href="{% url 'index' %}" class="btn btn-secondary">🏠 Zpět na hlavní stránku</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

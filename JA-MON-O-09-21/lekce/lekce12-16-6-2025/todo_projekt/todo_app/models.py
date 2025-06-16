@@ -1,8 +1,11 @@
 # todo_app/models.py
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Todo(models.Model):
+    # vazba na uzivatele, ktery ukol vytvoril
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # text => charField, maximalní délka 200 znaků, nazev "Úkol"
     text = models.CharField(max_length=200, verbose_name="Úkol")
     # poznamka => textField, volitelné (blank), nazev "Poznámka"
@@ -25,3 +28,11 @@ class Todo(models.Model):
     # Přidání metody pro zobrazení úkolu __str__
     def __str__(self):
         return self.text
+    
+
+# po aktualizaci
+# 1. python manage.py makemigrations
+# vybrat z menu 1
+# 2. k >>> napsat 1 jako defaultni hodnotu prozatim
+# 3. python manage.py migrate
+# pokud se vam ztratil superuser tak porom spustit -> python manage.py createsuperuser

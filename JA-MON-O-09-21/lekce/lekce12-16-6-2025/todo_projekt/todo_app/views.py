@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Todo
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 def index(request):
     """Hlavní stránka s přidáváním úkolů"""
@@ -18,6 +19,7 @@ def index(request):
         
         if text:
             Todo.objects.create(
+                user = request.user, # pridani uzivatele do objektu
                 text=text,
                 poznamka=poznamka,
                 ocekavane=ocekavane,
@@ -26,7 +28,7 @@ def index(request):
         return redirect('index')
     # Načti všechny úkoly kde deleted=False, seřaď podle data vytvoření
     # Vrať render s template 'index.html' a seznamem úkolů
-    todos = Todo.objects.filter(deleted=False).order_by('-created')
+    todos = Todo.objects.filter(user=request.user, deleted=False).order_by('-created')
     return render(request, 'index.html', {'todos': todos})
 
 def done(request, pk):
@@ -37,7 +39,7 @@ def done(request, pk):
         # Pokud je done=True, nastav completed=aktuální čas
         # Pokud je done=False, nastav completed=None
         # Ulož změny pomocí save()
-        todo = get_object_or_404(Todo, pk=pk)
+        todo = get_object_or_404(Todo, pk=pk, user=request.user) # pridani filtrovani, tak aby sli videt pouze ukoly pro daneho uzivatele
         todo.done = not todo.done
         if todo.done:
             todo.completed = timezone.now()
@@ -53,7 +55,7 @@ def delete(request, pk):
     # Nastav deleted=True a deleted_at=aktuální čas
     # Ulož změny
     # Přesměruj na hlavní stránku
-    todo = get_object_or_404(Todo, pk=pk)
+    todo = get_object_or_404(Todo, pk=pk, user=request.user) # pridani filtrovani, tak aby sli videt pouze ukoly pro daneho uzivatele
     todo.deleted = not todo.deleted
     todo.deleted_at = timezone.now()
     todo.save()
@@ -62,7 +64,7 @@ def delete(request, pk):
 def edit(request, pk):
     """Editace existujícího úkolu"""
     # Najdi úkol podle pk
-    todo = get_object_or_404(Todo, pk=pk)
+    todo = get_object_or_404(Todo, pk=pk, user=request.user) # pridani filtrovani, tak aby sli videt pouze ukoly pro daneho uzivatele
     if request.method == 'POST':
         # Aktualizuj všechna pole úkolu z formuláře
         # Ulož změny
@@ -86,6 +88,27 @@ def history(request):
     # Načti splněné úkoly: done=True, deleted=False
     # Načti smazané úkoly: deleted=True
     # Vrať template 'history.html' s oběma seznamy
-    splnene = Todo.objects.filter(done=True, deleted=False).order_by('-completed')
-    smazane = Todo.objects.filter(deleted=True).order_by('-deleted_at')
+    splnene = Todo.objects.filter(user=request.user, done=True, deleted=False).order_by('-completed')
+    smazane = Todo.objects.filter(user=request.user, deleted=True).order_by('-deleted_at')
     return render(request, 'history.html', {'splnene': splnene, 'smazane': smazane})
+
+def admin_stats(request):
+    users_stats = []
+    for user in User.objects.all():
+        stats = {
+            'user' : user,
+            'aktivni' : Todo.objects.filter(user=user, done=False, deleted=False).count(),
+            'splnene' : Todo.objects.filter(user=user, done=True, deleted=False).count(),
+            'smazane' : Todo.objects.filter(user=user, done=False, deleted=True).count(),
+            'celkem' : Todo.objects.filter(user=user).count(),
+        }
+        users_stats.append(stats)
+
+    total_stats = {
+            'pocet_uzivatelu' : User.objects.count(),
+            'aktivni' : Todo.objects.filter(done=False, deleted=False).count(),
+            'splnene' : Todo.objects.filter(done=True, deleted=False).count(),
+            'smazane' : Todo.objects.filter(done=False, deleted=True).count(),
+            'celkem' : Todo.objects.count(),
+        }
+    return render(request, 'admin-stats.html', {'users_stats' : users_stats , 'total_stats' : total_stats})

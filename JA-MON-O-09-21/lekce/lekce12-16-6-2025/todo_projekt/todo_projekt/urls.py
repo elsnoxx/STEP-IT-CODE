@@ -26,4 +26,5 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete, name='delete'),
     path('edit/<int:pk>/', views.edit, name='edit'),
     path('history/', views.history, name='history'),
+    path('admin_stats/', views.admin_stats, name='admin_stats'),
 ]
