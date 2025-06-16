@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Editace úkolu</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Editace úkolu</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="ukol" value="{{ todo.text }}" required>
+        <input type="text" name="poznamka" value="{{ todo.poznamka }}">
+        <input type="date" name="ocekavane" value="{% if todo.ocekavane %}{{ todo.ocekavane|date:'Y-m-d' }}{% endif %}">
+        <select name="predmet">
+            <option value="">--Vyber předmět--</option>
+            <option value="Matematika" {% if todo.predmet == "Matematika" %}selected{% endif %}>Matematika</option>
+            <option value="Český jazyk" {% if todo.predmet == "Český jazyk" %}selected{% endif %}>Český jazyk</option>
+            <option value="Angličtina" {% if todo.predmet == "Angličtina" %}selected{% endif %}>Angličtina</option>
+            <option value="Informatika" {% if todo.predmet == "Informatika" %}selected{% endif %}>Informatika</option>
+        </select>
+        <button type="submit">Uložit</button>
+    </form>
+    <p><a href="{% url 'index' %}">Zpět na seznam</a></p>
+</body>
+</html>
